@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { Phone, MessageCircle, Mail, ArrowLeft, ShieldCheck, FileText, Car } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,49 +17,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-// Mock data - in production this would come from API
-const carData = {
-  id: 1,
-  name: "2016 BMW X3 XDRIVE 20d F25",
-  year: 2016,
-  condition: "Used",
-  availability: "In Stock",
-  price: 3200000,
-  images: [
-    "/src/assets/hero-car.jpg",
-    "/src/assets/car-1.jpg",
-    "/src/assets/car-2.jpg",
-    "/src/assets/car-3.jpg",
-  ],
-  specs: {
-    engine: "2.0L Diesel",
-    transmission: "Automatic",
-    fuelType: "Diesel",
-    mileage: "45,000 km",
-    exteriorColor: "Alpine White",
-    interiorType: "Black Leather",
-  },
-  features: [
-    "Leather Seats",
-    "Backup Camera",
-    "LED Headlights",
-    "Navigation System",
-    "Bluetooth Connectivity",
-    "Cruise Control",
-    "Parking Sensors",
-    "Sunroof",
-    "Alloy Wheels",
-    "ABS Brakes",
-  ],
-  description:
-    "This 2016 BMW X3 XDRIVE 20d F25 is in excellent condition with full service history. The vehicle has been meticulously maintained and comes with all original documentation. Perfect for Kenyan roads with its all-wheel drive system and robust build quality. The car features a powerful yet economical diesel engine, making it ideal for both city driving and long-distance travel.",
-  owner: {
-    name: "AutoImport Kenya",
-    phone: "+254 712 345 678",
-    whatsapp: "+254712345678",
-  },
-};
+import { allCars } from "@/data/carsData";
 
 const CarDetail = () => {
   const { id } = useParams();
@@ -70,6 +28,14 @@ const CarDetail = () => {
     email: "",
     message: "",
   });
+
+  // Find the car by ID
+  const carData = allCars.find((car) => car.id === Number(id));
+
+  // If car not found, redirect to inventory
+  if (!carData) {
+    return <Navigate to="/inventory" replace />;
+  }
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
@@ -122,7 +88,7 @@ const CarDetail = () => {
                   className="w-full h-full object-cover"
                 />
                 <Badge className="absolute top-4 right-4 bg-primary/90">
-                  {carData.availability}
+                  {carData.status}
                 </Badge>
               </div>
               
@@ -164,7 +130,7 @@ const CarDetail = () => {
                   <Badge variant="outline">{carData.condition}</Badge>
                 </div>
                 <p className="text-4xl font-bold text-primary">
-                  KES {carData.price.toLocaleString()}
+                  {carData.price}
                 </p>
               </div>
 

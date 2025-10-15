@@ -6,78 +6,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Fuel, Gauge, Calendar, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import car1 from "@/assets/car-1.jpg";
-import car2 from "@/assets/car-2.jpg";
-import car3 from "@/assets/car-3.jpg";
-
-const allCars = [
-  {
-    id: 1,
-    name: "2019 Toyota Fielder Hybrid",
-    price: "KES 1,850,000",
-    year: 2019,
-    fuel: "Hybrid",
-    mileage: "45,000 km",
-    image: car1,
-    status: "Available",
-    type: "Wagon",
-  },
-  {
-    id: 2,
-    name: "2018 Mazda CX-3",
-    price: "KES 2,100,000",
-    year: 2018,
-    fuel: "Petrol",
-    mileage: "52,000 km",
-    image: car2,
-    status: "Available",
-    type: "SUV",
-  },
-  {
-    id: 3,
-    name: "2016 BMW X3 xDrive 20d",
-    price: "KES 3,200,000",
-    year: 2016,
-    fuel: "Diesel",
-    mileage: "68,000 km",
-    image: car3,
-    status: "Reserved",
-    type: "SUV",
-  },
-  {
-    id: 4,
-    name: "2020 Toyota Corolla Fielder",
-    price: "KES 1,950,000",
-    year: 2020,
-    fuel: "Hybrid",
-    mileage: "38,000 km",
-    image: car1,
-    status: "Available",
-    type: "Wagon",
-  },
-  {
-    id: 5,
-    name: "2019 Mazda CX-30",
-    price: "KES 2,400,000",
-    year: 2019,
-    fuel: "Diesel",
-    mileage: "42,000 km",
-    image: car2,
-    status: "Available",
-    type: "SUV",
-  },
-  {
-    id: 6,
-    name: "2017 BMW 3 Series",
-    price: "KES 2,800,000",
-    year: 2017,
-    fuel: "Petrol",
-    mileage: "55,000 km",
-    image: car3,
-    status: "Available",
-    type: "Sedan",
-  },
-];
+import { allCars } from "@/data/carsData";
 
 const Inventory = () => {
   return (

@@ -2,42 +2,9 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { ArrowRight, Fuel, Gauge, Calendar } from "lucide-react";
-import car1 from "@/assets/car-1.jpg";
-import car2 from "@/assets/car-2.jpg";
-import car3 from "@/assets/car-3.jpg";
+import { allCars } from "@/data/carsData";
 
-const featuredCars = [
-  {
-    id: 1,
-    name: "2019 Toyota Fielder Hybrid",
-    price: "KES 1,850,000",
-    year: 2019,
-    fuel: "Hybrid",
-    mileage: "45,000 km",
-    image: car1,
-    status: "Available",
-  },
-  {
-    id: 2,
-    name: "2018 Mazda CX-3",
-    price: "KES 2,100,000",
-    year: 2018,
-    fuel: "Petrol",
-    mileage: "52,000 km",
-    image: car2,
-    status: "Available",
-  },
-  {
-    id: 3,
-    name: "2016 BMW X3 xDrive 20d",
-    price: "KES 3,200,000",
-    year: 2016,
-    fuel: "Diesel",
-    mileage: "68,000 km",
-    image: car3,
-    status: "Reserved",
-  },
-];
+const featuredCars = allCars.slice(0, 3);
 
 const FeaturedCars = () => {
   return (
