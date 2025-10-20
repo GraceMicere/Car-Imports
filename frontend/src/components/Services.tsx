@@ -18,13 +18,6 @@ const services = [
     path: "/services/shipping-and-logistics",
   },
   {
-    icon: Wrench,
-    title: "Vehicle Inspection",
-    description:
-      "Every vehicle undergoes thorough inspection to verify condition, authenticity, and compliance with Kenyan standards.",
-    path: "/services/vehicle-inspection",
-  },
-  {
     icon: Shield,
     title: "Secure Payment",
     description:

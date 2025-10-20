@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import CustomClearance from "./pages/CustomClearance";
 import VehicleSourcing from "./pages/VehicleSourcing";
 import ShippingLogistics from "./pages/ShippingLogistics";
 import SecurePayment from "./pages/SecurePayment";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/services/vehicle-sourcing" element={<VehicleSourcing />} />
           <Route path="/services/shipping-and-logistics" element={<ShippingLogistics />} />
           <Route path="/services/secure-payment" element={<SecurePayment />} />
+          <Route path="/services/custom-clearance" element={<CustomClearance />} />
           <Route path="/services/listing-of-vehicles" element={<ListingOfVehicles />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

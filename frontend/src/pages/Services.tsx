@@ -55,7 +55,7 @@ const services = [
       "KRA compliance",
       "Duty optimization",
     ],
-    link: "/services/customs-clearance",
+    link: "/services/custom-clearance",
   },
   {
     icon: Shield,
