@@ -1,24 +1,24 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import EnquiryForm from "@/components/EnquiryForm";
+import CarEnquiryForm from "@/components/CarEnquiryForm";
 import { fadeUp } from "../animations/fadeUp";
 import { motion } from "framer-motion";
 import {
   Search,
   Wrench,
-  CheckCircle,
-  Shield,
-  Gauge,
-  ClipboardCheck,
-  Phone,
-  Mail,
-  MapPin,
+  Handshake,
+  UserCheck,
+  CarFront,
+  Fuel,
+  Users,
+  Star,
+  SearchCheck,
+  CreditCard,
+  DollarSign,
+  ShieldCheck,
   Car,
   Zap,
-  Truck,
-  Cpu,
-  Bike,
 } from "lucide-react";
 
 
@@ -71,22 +71,47 @@ const VehicleSourcing = () => {
                 {
                   step: "1",
                   title: "Tell Us Your Needs",
-                  desc: "Share your vehicle preferences, budget, and specific requirements.",
+                  desc: "Share your vehicle preferences, budget, and any specific requirements you have. Our team will use this information to find the perfect match for you.",
                 },
                 {
                   step: "2",
-                  title: "We Search Our Network",
-                  desc: "Our sourcing team searches our trusted global network for matches.",
+                  title: "We Search From Our Japan Network",
+                  desc: "We conduct an extensive search through our trusted network of Japanese dealers and auction houses to identify the best vehicles available.",
                 },
                 {
                   step: "3",
-                  title: "Present Options",
-                  desc: "We present verified vehicle options that meet your requirements.",
+                  title: "Present Verified Options",
+                  desc: "You’ll receive a curated list of verified vehicle options that match your preferences, complete with photos and detailed specifications.",
                 },
                 {
                   step: "4",
-                  title: "Secure Purchase",
-                  desc: "We handle all logistics — purchase, shipment, and inspection.",
+                  title: "Reservation",
+                  desc: "Once you’ve selected your preferred vehicle, we reserve it for up to 2 days while you prepare for purchase.",
+                },
+                {
+                  step: "5",
+                  title: "Due Diligence",
+                  desc: "Before finalizing the purchase, our experts conduct a comprehensive background check — including service history, recall records, and accident reports — to ensure the vehicle’s integrity.",
+                },
+                {
+                  step: "6",
+                  title: "Secure Payment",
+                  desc: "We facilitate a transparent and secure international payment process, ensuring your funds are safely transferred to the vehicle’s seller.",
+                },
+                {
+                  step: "7",
+                  title: "Relax While We Ship",
+                  desc: "Once payment is confirmed, sit back and relax as your vehicle is shipped to Kenya — typically arriving within 45 days.",
+                },
+                {
+                  step: "8",
+                  title: "Clearing and Registration",
+                  desc: "Our team handles all port clearance procedures, duty payments, and NTSA registration to make the process completely hassle-free for you.",
+                },
+                {
+                  step: "9",
+                  title: "Final Delivery",
+                  desc: "Your car is delivered to Nairobi, inspected, and then transported directly to your doorstep — ready for the road.",
                 },
               ].map((item, i) => (
                 <motion.div
@@ -123,34 +148,34 @@ const VehicleSourcing = () => {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  icon: Shield,
-                  title: "Kenya-Compliant Sourcing",
-                  desc: "We source RHD vehicles under 8 years old from Japan, UK, and UAE.",
+                  icon: Star,
+                  title: "High-Grade Quality Vehicles",
+                  desc: "We specialize in importing low-mileage, high-grade cars (Grade 4 and above) to ensure premium quality and reliability.",
                 },
                 {
-                  icon: ClipboardCheck,
-                  title: "KEBS Pre-Inspection",
-                  desc: "All vehicles undergo mandatory pre-export inspection by KEBS agents.",
+                  icon: SearchCheck,
+                  title: "Thorough Due Diligence",
+                  desc: "Before any purchase, we perform a detailed background check on service history, recalls, and past accidents for complete transparency.",
                 },
                 {
-                  icon: Gauge,
-                  title: "Best Prices",
-                  desc: "We negotiate favorable rates through our trusted dealer relationships.",
+                  icon: CreditCard,
+                  title: "Flexible Payment Options",
+                  desc: "Enjoy flexibility — pay 70% upfront and settle the balance once your car arrives safely at the Port of Mombasa.",
+                },
+                {
+                  icon: DollarSign,
+                  title: "Competitive Pricing",
+                  desc: "We offer the best market rates by balancing your budget with exceptional vehicle quality and value.",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Kenya-Compliant Vehicles",
+                  desc: "All sourced vehicles meet Kenyan import standards, including right-hand drive and the 8-year age limit requirement.",
                 },
                 {
                   icon: Zap,
-                  title: "Fast Sourcing",
-                  desc: "Quick turnaround with constant updates on your vehicle search.",
-                },
-                {
-                  icon: CheckCircle,
-                  title: "Age Verification",
-                  desc: "We confirm manufacturing dates to meet the 8-year age limit.",
-                },
-                {
-                  icon: Wrench,
-                  title: "Garage Expertise",
-                  desc: "Our certified mechanics assess mechanical, electrical, and body condition.",
+                  title: "Fast and Reliable Sourcing",
+                  desc: "We prioritize vehicles already inspected and approved for export to ensure a quick, seamless sourcing process.",
                 },
               ].map((item, i) => (
                 <motion.div
@@ -181,12 +206,14 @@ const VehicleSourcing = () => {
               variants={fadeUp}
               className="text-3xl font-bold mb-6 text-center"
             >
-              Xplore Car Imports: Automotive Garage Expertise Behind Every Import
+              Xplore Car Imports: A Business Opportunity on Wheels
             </motion.h2>
 
             <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            We're not just import agents — we're automotive technicians who live and breathe cars. 
-            That means every vehicle we recommend has been assessed with a mechanic’s eye, not just a sales pitch.
+              We don’t just import cars for personal use — we empower entrepreneurs and
+              drivers to start or expand their ride-handling businesses. Every vehicle we
+              recommend for online taxi services, corporate transport, or personal hire
+              has been carefully evaluated for efficiency, durability, and profitability.
             </p>
 
             <div className="grid md:grid-cols-2 gap-10">
@@ -199,23 +226,23 @@ const VehicleSourcing = () => {
                 className="space-y-6"
               >
                 <h3 className="text-2xl font-semibold flex items-center gap-2">
-                  <Wrench className="text-primary" /> Technical Assessment & Verification
+                  <Car className="text-primary" /> Smart Car Selection for Ride Handling
                 </h3>
                 <ul className="list-disc list-inside text-muted-foreground space-y-2">
-                <li>Full inspection of engine, gearbox, and suspension systems</li>
-                <li>Electrical and safety system diagnostics</li>
-                <li>Body, frame, and undercarriage integrity review</li>
-                <li>Service and maintenance record verification</li>
+                  <li>Fuel-efficient and reliable models ideal for platforms like Uber, Bolt, and Little Cab</li>
+                  <li>Long-lasting cars with low maintenance costs and high resale value</li>
+                  <li>Guidance on hybrid and economy options that maximize profit margins</li>
+                  <li>Access to verified units already registered for commercial use</li>
                 </ul>
 
                 <h3 className="text-2xl font-semibold flex items-center gap-2 mt-8">
-                  <CheckCircle className="text-primary" /> Personalized Recommendations
+                  <UserCheck className="text-primary" /> Driver Recruitment & Partnership Support
                 </h3>
                 <ul className="list-disc list-inside text-muted-foreground space-y-2">
-                <li>Model suggestions based on Kenya’s driving conditions</li>
-                <li>Brands with reliable parts availability locally</li>
-                <li>Advice on fuel economy, durability, and resale value</li>
-                <li>Transparent insights to help you make the right choice</li>
+                  <li>Assistance connecting qualified drivers with available vehicles</li>
+                  <li>Flexible payment and lease plans to help new drivers get started</li>
+                  <li>Consultation on driving experience, professionalism, and customer service</li>
+                  <li>Guided onboarding for those seeking to build long-term transport businesses</li>
                 </ul>
               </motion.div>
 
@@ -228,23 +255,22 @@ const VehicleSourcing = () => {
                 className="space-y-6"
               >
                 <h3 className="text-2xl font-semibold flex items-center gap-2">
-                  <Shield className="text-primary" /> Spotting Red Flags Before You Buy
+                  <Handshake className="text-primary" /> Business Support
                 </h3>
                 <ul className="list-disc list-inside text-muted-foreground space-y-2">
-                <li>Hidden accident or frame damage detection</li>
-                <li>Water or flood exposure indicators</li>
-                <li>Odometer and mileage verification</li>
-                <li>Early signs of costly mechanical issues</li>
+                  <li>Guidance on business setup for individuals and small fleets</li>
+                  <li>Advisory on tax, insurance, and operational cost management</li>
+                  <li>Ongoing mentorship for sustainable car-based income</li>
                 </ul>
 
                 <h3 className="text-2xl font-semibold flex items-center gap-2 mt-8">
-                  <Wrench className="text-primary" /> Support That Continues After Arrival
+                  <Wrench className="text-primary" /> Local Support & Maintenance Network
                 </h3>
                 <ul className="list-disc list-inside text-muted-foreground space-y-2">
-                <li>Detailed pre-delivery inspection and tuning</li>
-                <li>Servicing, repairs, and maintenance packages</li>
-                <li>Genuine spare parts and accessories sourcing</li>
-                <li>Friendly after-sales advice from our garage team</li>
+                  <li>Links to trusted local garages and service centers</li>
+                  <li>Access to affordable spare parts and bodywork services</li>
+                  <li>Continuous technical support and maintenance guidance</li>
+                  <li>After-sales support to keep your vehicle business running efficiently</li>
                 </ul>
               </motion.div>
             </div>
@@ -252,7 +278,7 @@ const VehicleSourcing = () => {
         </section>
 
         {/* VEHICLE TYPES */}
-        <section className="py-20 bg-gradient-to-r from-primary/5 to-indigo-50">
+        <section className="py-20 bg-gradient-to-r from-primary/5 to-indigo-50 overflow-hidden">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.h2
               initial="hidden"
@@ -261,30 +287,55 @@ const VehicleSourcing = () => {
               variants={fadeUp}
               className="text-3xl font-bold text-center mb-12"
             >
-              Vehicle Types We Source for Kenya
+              Popular Vehicles We Source for Kenya
             </motion.h2>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { icon: Car, title: "Japanese Imports", desc: "Toyota, Honda, Nissan, Subaru" },
-                { icon: Zap, title: "European Luxury", desc: "BMW, Mercedes, Audi – RHD models" },
-                { icon: Truck, title: "Commercial Vehicles", desc: "Hiace, Isuzu trucks, vans" },
-                { icon: Shield, title: "SUVs & 4x4s", desc: "Land Cruiser, Prado, Range Rover" },
-                { icon: Cpu, title: "Electric Vehicles", desc: "Tesla, Nissan Leaf (RHD)" },
-                { icon: Bike, title: "Motorcycles", desc: "Honda, Yamaha, Kawasaki" },
+                {
+                  icon: CarFront,
+                  title: "Popular Taxi Vehicles",
+                  desc: "We import efficient and durable units ideal for ride-hailing businesses such as Uber, Bolt, and Little Cab.",
+                  models: ["Toyota Axio", "Toyota Fielder", "Mazda Demio", "Honda Fit", "Nissan Note", "Toyota Belta"],
+                },
+                {
+                  icon: Fuel,
+                  title: "Fuel-Efficient Hatchbacks",
+                  desc: "Perfect for both private and taxi use — low maintenance, great fuel economy, and easy spare parts availability.",
+                  models: ["Toyota Vitz", "Mazda Demio SkyActiv", "Honda Fit Hybrid", "Suzuki Swift", "Toyota Passo"],
+                },
+                {
+                  icon: Users,
+                  title: "Family & Executive Sedans",
+                  desc: "Spacious, comfortable cars suited for family and private use, balancing class with affordability.",
+                  models: ["Toyota Premio", "Toyota Allion", "Nissan Sylphy", "Mazda Atenza", "Honda Grace"],
+                },
+                {
+                  icon: Car,
+                  title: "SUVs for Business or Private Use",
+                  desc: "For long-distance comfort, high ground clearance, and multi-purpose usage — perfect for both urban and rural areas.",
+                  models: ["Toyota Harrier", "RAV4", "Honda CR-V", "Mazda CX-5", "Subaru Forester"],
+                },
               ].map((item, i) => (
                 <motion.div
                   key={i}
-                  custom={i * 0.1}
+                  custom={i * 0.2}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className="p-6 bg-white rounded-xl shadow-md border-l-4 border-primary/40"
+                  className="p-6 bg-white rounded-2xl shadow-md border-l-4 border-primary/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
                 >
-                  <item.icon className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
+                  <div className="flex items-center gap-3 mb-3">
+                    <item.icon className="w-8 h-8 text-primary" />
+                    <h3 className="text-xl font-semibold">{item.title}</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">{item.desc}</p>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 text-sm">
+                    {item.models.map((model, idx) => (
+                      <li key={idx}>{model}</li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
             </div>
@@ -303,7 +354,7 @@ const VehicleSourcing = () => {
         </div>
 
         <div className="container mx-auto px-4 max-w-4xl">
-          <EnquiryForm />
+          <CarEnquiryForm />
         </div>
       </section>
       <Footer />

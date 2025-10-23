@@ -1,5 +1,5 @@
 import { Card } from "./ui/card";
-import { Ship, Search, FileCheck, Wrench, Shield, Headphones } from "lucide-react";
+import { Ship, Search, GraduationCap, CarFront, Headphones } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -7,29 +7,22 @@ const services = [
     icon: Search,
     title: "Vehicle Sourcing",
     description:
-      "We source high-quality vehicles from trusted dealers and auctions from Japan, UK, and Dubai, ensuring you get the best options for your budget.",
+      "We source high-quality vehicles from trusted dealers and auctions across Japan, the UK, and Dubai — ensuring every import meets strict quality and value standards tailored to your budget.",
     path: "/services/vehicle-sourcing",
   },
   {
-    icon: Ship,
-    title: "Shipping & Logistics",
+    icon: GraduationCap,
+    title: "Car Importation Masterclass",
     description:
-      "Our team handles all aspects of shipping, from secure loading to efficient transportation, with real-time tracking available.",
-    path: "/services/shipping-and-logistics",
+      "Learn the full car importation process from industry experts. Our masterclass covers auction bidding, documentation, shipping, and clearance — empowering you to confidently import your own car.",
+    path: "/services/car-importation-masterclass",
   },
   {
-    icon: Shield,
-    title: "Secure Payment",
+    icon: CarFront,
+    title: "Kenya Taxi Business Advisory",
     description:
-      "We provide secure payment options and transparent pricing, with no hidden fees throughout the importation process.",
-    path: "/services/secure-payment",
-  },
-  {
-    icon: Headphones,
-    title: "Listing of vehicles",
-    description:
-      "Easily list your vehicles on our platform to reach potential buyers. Our streamlined process ensures your cars get maximum visibility with detailed specifications, images, and pricing.",
-    path: "/services/listing-of-vehicles",
+      "Thinking of starting a taxi or ride-hailing business? Get professional guidance on vehicle selection, financing, and licensing to build a profitable and sustainable taxi business in Kenya.",
+    path: "/services/kenya-taxi-business-advisory",
   },
 ];
 
@@ -44,8 +37,8 @@ const Services = () => {
           </div>
           <h2 className="text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            We provide comprehensive vehicle importation services to make your car buying experience
-            seamless and stress-free.
+            We offer end-to-end vehicle importation and business support services designed to make
+            your car buying journey simple, transparent, and profitable.
           </p>
         </div>
 

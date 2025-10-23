@@ -1,19 +1,31 @@
 from rest_framework import serializers
-from .models import Car, Owner, Enquiry
+from .models import Car, CarImage, Enquiry, CarEnquiry
 
-class OwnerSerializer(serializers.ModelSerializer):
+
+class CarImageSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(use_url=True)
+
     class Meta:
-        model = Owner
-        fields = '__all__'
-
+        model = CarImage
+        fields = ['id', 'image']
 
 class CarSerializer(serializers.ModelSerializer):
-    owner = OwnerSerializer(read_only=True)
+    images = CarImageSerializer(many=True, read_only=True)
+
     class Meta:
         model = Car
-        fields = '__all__'
+        fields = [
+            'id', 'name', 'make', 'model', 'year', 'grade', 'engine_type',
+            'mileage', 'price', 'color', 'description', 'transmission',
+            'features', 'status', 'created_at', 'images'
+        ]
 
 class EnquirySerializer(serializers.ModelSerializer):
     class Meta:
         model = Enquiry
+        fields = '__all__'
+
+class CarEnquirySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarEnquiry
         fields = '__all__'

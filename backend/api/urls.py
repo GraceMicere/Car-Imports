@@ -1,8 +1,10 @@
-from django.urls import path
-from . import views
+from rest_framework.routers import DefaultRouter
+from .views import CarViewSet, CarImageViewSet, EnquiryViewSet, CarEnquiryViewSet
 
-urlpatterns = [
-    path('cars/', views.get_cars),
-    path('cars/filter/', views.filter_cars),
-    path("enquiries/", views.create_enquiry, name="enquiry-create"),
-]
+router = DefaultRouter()
+router.register(r'cars', CarViewSet)
+router.register(r'car-images', CarImageViewSet)
+router.register(r'enquiries', EnquiryViewSet)
+router.register(r'car-enquiries', CarEnquiryViewSet)
+
+urlpatterns = router.urls

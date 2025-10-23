@@ -31,58 +31,6 @@ const services = [
     ],
     link: "/services/vehicle-sourcing",
   },
-  {
-    icon: Ship,
-    title: "Shipping & Logistics",
-    description:
-      "Our team handles all aspects of shipping, from secure loading to efficient transportation. We provide real-time tracking and updates throughout the journey.",
-    features: [
-      "Secure container shipping",
-      "Real-time GPS tracking",
-      "Insurance coverage",
-      "Multiple shipping routes",
-    ],
-    link: "/services/shipping-and-logistics",
-  },
-  {
-    icon: FileCheck,
-    title: "Customs Clearance",
-    description:
-      "We manage all customs documentation and clearance procedures, ensuring smooth and compliant importation into Kenya with minimal delays.",
-    features: [
-      "Complete documentation handling",
-      "Tax calculation and payment",
-      "KRA compliance",
-      "Duty optimization",
-    ],
-    link: "/services/custom-clearance",
-  },
-  {
-    icon: Shield,
-    title: "Secure Payment",
-    description:
-      "We provide secure payment options and transparent pricing, with no hidden fees throughout the importation process.",
-    features: [
-      "Multiple payment methods",
-      "Transparent pricing",
-      "No hidden fees",
-      "Payment protection",
-    ],
-    link: "/services/secure-payment",
-  },
-  {
-    icon: Headphones,
-    title: "Listing of Vehicles",
-    description:
-      "Showcase your vehicles to a wider audience through our platform. We make it simple to list, manage, and promote cars with clear details and professional presentation.",
-    features: [
-      "Easy vehicle listing process",
-      "High visibility to potential buyers",
-      "Detailed specs, images, and pricing",
-      "Secure and transparent inquiries",
-    ],
-    link: "/services/listing-of-vehicles",
-  },
 ];
 
 // ---- Page Component ----

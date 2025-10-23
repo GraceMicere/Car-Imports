@@ -1,32 +1,41 @@
-from rest_framework.response import Response 
-from rest_framework.decorators import api_view
-from rest_framework import generics, status
-from .models import Car, Enquiry
-from .serializers import CarSerializer, EnquirySerializer
+from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import Car, CarImage, Enquiry, CarEnquiry
+from .serializers import (
+    CarSerializer, CarImageSerializer,
+    EnquirySerializer, CarEnquirySerializer
+)
 
-@api_view(['GET'])
-def get_cars(request):
-    status = request.GET.get('status')
-    if status:
-        cars = cars.objects.filter(status=status).order_by('-created_at')
-    else:
-        cars = Car.objects.all().order_by('-created_at')
-    serializer = CarSerializer(cars, many=True)
-    return Response(serializer.data)
+class CarViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Car.objects.all().order_by('-created_at')
+    serializer_class = CarSerializer
 
-@api_view(['GET'])
-def filter_cars(request):
-    engine = request.GET.get('engine')
-    queryset = Car.objects.all()
-    if engine:
-        queryset = queryset.filter(engine_type=engine)
-    serializer = CarSerializer(queryset, many=True)
-    return Response(serializer.data)
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['engine_type', 'status', 'year']
+    search_fields = ['make', 'model', 'color', 'description']
+    ordering_fields = ['price', 'year', 'mileage', 'created_at']
 
-@api_view(["POST"])
-def create_enquiry(request):
-    serializer = EnquirySerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        min_price = self.request.query_params.get('min_price')
+        max_price = self.request.query_params.get('max_price')
+
+        if min_price:
+            queryset = queryset.filter(price__gte=min_price)
+        if max_price:
+            queryset = queryset.filter(price__lte=max_price)
+        return queryset
+
+class CarImageViewSet(viewsets.ModelViewSet):
+    queryset = CarImage.objects.all()
+    serializer_class = CarImageSerializer
+
+
+class EnquiryViewSet(viewsets.ModelViewSet):
+    queryset = Enquiry.objects.all().order_by('-created_at')
+    serializer_class = EnquirySerializer
+    http_method_names = ['post', 'get', 'head'] 
+
+class CarEnquiryViewSet(viewsets.ModelViewSet):
+    queryset = CarEnquiry.objects.all().order_by('-created_at')
+    serializer_class = CarEnquirySerializer

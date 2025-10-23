@@ -11,103 +11,120 @@ const FeaturedCars = () => {
 
   useEffect(() => {
     async function loadCars() {
-      setLoading(true);
-      const data = await fetchCars();
-      setCars(data.slice(0, 3)); // ✅ show only first 3
-      setLoading(false);
+      try {
+        setLoading(true);
+        const data = await fetchCars();
+        setCars(data.slice(0, 3)); 
+      } catch (error) {
+        console.error("Failed to load cars:", error);
+      } finally {
+        setLoading(false);
+      }
     }
+
     loadCars();
   }, []);
 
   return (
-    <section className="py-20 bg-secondary/30">
+    <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Featured Vehicles</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-gray-500 max-w-2xl mx-auto">
             Explore our handpicked selection of premium imported vehicles, ready for delivery to Kenya.
           </p>
         </div>
 
-        {/* Loading State */}
+        {/* Loading and Empty States */}
         {loading ? (
-          <div className="text-center py-10 text-muted-foreground">Loading featured cars...</div>
+          <div className="text-center py-10 text-gray-500">Loading featured cars...</div>
         ) : cars.length === 0 ? (
-          <div className="text-center py-10 text-muted-foreground">
-            No cars are available at the moment.
+          <div className="text-center py-10 text-gray-500">
+            No cars available at the moment.
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {cars.map((car) => (
-              <Card
-                key={car.id}
-                className="group overflow-hidden hover:shadow-large transition-all duration-300 border-2 hover:border-primary"
-              >
-                {/* Car Image */}
-                <div className="relative overflow-hidden aspect-[4/3]">
-                  <img
-                    src={
-                      car.image
-                        ? `http://127.0.0.1:8000${car.image}`
-                        : "/placeholder-car.jpg"
-                    }
-                    alt={car.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        car.status === "available"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-accent text-accent-foreground"
-                      }`}
-                    >
-                      {car.status}
-                    </span>
-                  </div>
-                </div>
+            {cars.map((car) => {
+              // ✅ Handle multiple images
+              const firstImage =
+                car.images && car.images.length > 0
+                  ? `http://127.0.0.1:8000${car.images[0].image}`
+                  : "/placeholder-car.jpg";
 
-                {/* Car Details */}
-                <div className="p-6 space-y-4">
-                  <div>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                      {car.name}
-                    </h3>
-                    <p className="text-2xl font-bold text-primary">
-                      {car.price ? `KES ${Number(car.price).toLocaleString()}` : "Price on Request"}
-                    </p>
-                  </div>
+              return (
+                <Card
+                  key={car.id}
+                  className="group overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-blue-500"
+                >
+                  {/* Car Image */}
+                  <div className="relative overflow-hidden aspect-[4/3]">
+                    {car.images && car.images.length > 0 ? (
+                      <img
+                        src={car.images[0].image.startsWith("http")
+                          ? car.images[0].image
+                          : `http://127.0.0.1:8000${car.images[0].image}`}
+                        alt={car.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-500 text-sm">
+                        No Image Available
+                      </div>
+                    )}
 
-                  {/* Specs */}
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>{car.year}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Fuel className="h-4 w-4" />
-                      <span>{car.fuel}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Gauge className="h-4 w-4" />
-                      <span>{car.mileage}</span>
+                    <div className="absolute top-4 right-4">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                          car.status === "available"
+                            ? "bg-green-500 text-white"
+                            : "bg-yellow-400 text-black"
+                        }`}
+                      >
+                        {car.status}
+                      </span>
                     </div>
                   </div>
 
-                  <Button
-                    variant="default"
-                    className="w-full group-hover:shadow-medium"
-                    asChild
-                  >
-                    <Link to={`/inventory/${car.id}`}>
-                      View Details
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                </div>
-              </Card>
-            ))}
+                  {/* Car Details */}
+                  <div className="p-6 space-y-4">
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
+                        {car.name}
+                      </h3>
+                      <p className="text-2xl font-bold text-blue-600">
+                        {car.price
+                          ? `KES ${Number(car.price).toLocaleString()}`
+                          : "Price on Request"}
+                      </p>
+                    </div>
+
+                    {/* Car Specs */}
+                    <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        <span>{car.year}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Fuel className="h-4 w-4" />
+                        <span>{car.engine_type}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Gauge className="h-4 w-4" />
+                        <span>{car.mileage.toLocaleString()} km</span>
+                      </div>
+                    </div>
+
+                    <Button variant="default" className="w-full" asChild>
+                      <Link to={`/inventory/${car.id}`}>
+                        View Details
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         )}
 
@@ -124,6 +141,5 @@ const FeaturedCars = () => {
     </section>
   );
 };
-
 
 export default FeaturedCars;
