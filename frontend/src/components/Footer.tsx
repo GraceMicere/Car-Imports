@@ -55,10 +55,7 @@ const Footer = () => {
             <h4 className="font-semibold text-lg mb-4">Our Services</h4>
             <ul className="space-y-2 text-sm opacity-80">
               <li>Vehicle Sourcing</li>
-              <li>Shipping & Logistics</li>
-              <li>Customs Clearance</li>
-              <li>Vehicle Inspection</li>
-              <li>After-Sales Support</li>
+              <li>Kenya Taxi Business Advisory</li>
             </ul>
           </div>
 
