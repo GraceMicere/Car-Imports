@@ -9,32 +9,20 @@ export const fetchCars = async () => {
     const data = await response.json();
     console.log("✅ Cars API Response:", data);
 
-    // Support both paginated & non-paginated responses
-    return Array.isArray(data) ? data : data.results || [];
+    // Normalize image URLs for each car
+    const normalizedData = (Array.isArray(data) ? data : data.results || []).map(car => ({
+      ...car,
+      images: (car.images || []).map(img =>
+        img.image.startsWith("http") ? img.image : `http://127.0.0.1:8000${img.image}`
+      )
+    }));
+
+    return normalizedData;
   } catch (error) {
     console.error("❌ Error fetching cars:", error);
     return [];
   }
 };
-
-export async function fetchCarImages(carId) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/car-images/?car=${carId}`, {
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(`❌ Error fetching images for car ${carId}:`, error);
-    return [];
-  }
-}
-
 
 export async function submitEnquiry(formData) {
   try {

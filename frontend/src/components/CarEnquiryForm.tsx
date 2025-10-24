@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { submitCarEnquiry } from "@/services/api"; // adjust import if needed
 
-const CarEnquiryForm: React.FC = () => {
+// Define props type
+interface Car {
+  id: number;
+  name: string;
+  make?: string;
+  model?: string;
+}
+
+interface CarEnquiryFormProps {
+  car?: Car | null;
+  onClose?: () => void;
+  disableClose?: boolean;
+}
+
+
+const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
     phone: "",
     subject: "Inquiry about car import",
-    vehicle_of_interest: "",
+    vehicle_of_interest: car?.name || "",
     budget_range: "",
     message: "",
   });
@@ -16,6 +31,16 @@ const CarEnquiryForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Auto-update when car changes
+  useEffect(() => {
+    if (car) {
+      setFormData((prev) => ({
+        ...prev,
+        vehicle_of_interest: car.name,
+      }));
+    }
+  }, [car]);
 
   const carOptions = [
     "Toyota Axio",
@@ -48,25 +73,35 @@ const CarEnquiryForm: React.FC = () => {
 
     try {
       await submitCarEnquiry(formData);
-      setSuccess("Your car enquiry has been submitted successfully!");
+      setSuccess("✅ Your car enquiry has been submitted successfully!");
       setFormData({
         full_name: "",
         email: "",
         phone: "",
         subject: "Inquiry about car import",
-        vehicle_of_interest: "",
+        vehicle_of_interest: car?.name || "",
         budget_range: "",
         message: "",
       });
     } catch (err) {
-      setError("Failed to submit enquiry. Please try again later.");
+      setError("❌ Failed to submit enquiry. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="py-16 bg-gradient-to-r from-primary/5 to-indigo-50">
+    <section className="p-6 relative">
+      {/* Optional Close Button */}
+      {onClose && (
+        <button
+          onClick={onClose}
+          className="absolute top-6 right-6 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
+        >
+          ✕
+        </button>
+      )}
+
       <div className="container mx-auto px-6 max-w-3xl">
         <motion.form
           onSubmit={handleSubmit}
@@ -75,6 +110,10 @@ const CarEnquiryForm: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="bg-white p-8 rounded-2xl shadow-lg grid gap-6"
         >
+          <h2 className="text-2xl font-bold text-center mb-2">
+            Enquire about {car ? car.name : "a Vehicle"}
+          </h2>
+
           <div>
             <label className="block text-sm font-medium mb-2">Full Name</label>
             <input
@@ -121,9 +160,9 @@ const CarEnquiryForm: React.FC = () => {
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
             >
               <option value="">Select Vehicle</option>
-              {carOptions.map((car) => (
-                <option key={car} value={car}>
-                  {car}
+              {carOptions.map((c) => (
+                <option key={c} value={c}>
+                  {c}
                 </option>
               ))}
             </select>
@@ -178,3 +217,4 @@ const CarEnquiryForm: React.FC = () => {
 };
 
 export default CarEnquiryForm;
+

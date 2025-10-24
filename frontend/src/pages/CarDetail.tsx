@@ -5,26 +5,22 @@ import {
   MessageCircle,
   Mail,
   ArrowLeft,
-  ShieldCheck,
-  FileText,
   Car,
   Gauge,
   Settings,
   Fuel,
   Calendar,
   PaintBucket,
+  ChevronLeft,
+  ChevronRight,
+  Star,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { fadeUp } from "../animations/fadeUp";
 import { motion } from "framer-motion";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
@@ -34,26 +30,38 @@ const CarDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
   const [carData, setCarData] = useState<any | null>(null);
+  const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    async function loadCar() {
+    async function loadCarDetails() {
       setLoading(true);
       try {
-        const data = await fetchCars();
-        const foundCar = data.find((car: any) => String(car.id) === id);
-        setCarData(foundCar || null);
+        const cars = await fetchCars();
+        const foundCar = cars.find((car) => String(car.id) === id);
+        if (!foundCar) return setCarData(null);
+
+        setCarData(foundCar);
+
+        // ✅ Ensure absolute URLs
+        const fullImages = (foundCar.images || []).map((img: string) =>
+          img.startsWith("http") ? img : `http://127.0.0.1:8000${img}`
+        );
+        setImages(fullImages);
       } catch (error) {
-        console.error("Error fetching car:", error);
+        console.error("Error fetching car details:", error);
+        toast({ title: "Error loading car details." });
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
-    loadCar();
+    loadCarDetails();
   }, [id]);
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center text-muted-foreground">
+      <div className="h-screen flex items-center justify-center text-gray-500">
         Loading car details...
       </div>
     );
@@ -63,42 +71,33 @@ const CarDetail = () => {
     return <Navigate to="/inventory" replace />;
   }
 
+  const handleNextImage = () =>
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  const handlePrevImage = () =>
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  // Contact handlers
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
       `Hi, I'm interested in the ${carData.name} listed on your website.`
     );
-    if (carData.owner?.whatsapp) {
-      window.open(`https://wa.me/${carData.owner.whatsapp}?text=${message}`, "_blank");
-    } else {
-      toast({ title: "WhatsApp number not available." });
-    }
+    window.open(`https://wa.me/254712345678?text=${message}`, "_blank");
   };
-
   const handleCall = () => {
-    if (carData.owner?.phone) {
-      window.location.href = `tel:${carData.owner.phone}`;
-    } else {
-      toast({ title: "Phone number not available." });
-    }
+    window.location.href = `tel:+254712345678`;
   };
-
   const handleEmail = () => {
-    if (carData.owner?.email) {
-      const subject = encodeURIComponent(`Inquiry about ${carData.name}`);
-      const body = encodeURIComponent(
-        `Hello ${carData.owner.name || "there"},\n\nI am interested in the ${carData.name} you have listed. Please provide more details.\n\nThank you.`
-      );
-      window.location.href = `mailto:${carData.owner.email}?subject=${subject}&body=${body}`;
-    } else {
-      toast({ title: "Email address not available." });
-    }
+    const subject = encodeURIComponent(`Inquiry about ${carData.name}`);
+    const body = encodeURIComponent(
+      `Hello, I'm interested in the ${carData.name}. Please provide more details.`
+    );
+    window.location.href = `mailto:info@xploreimports.com?subject=${subject}&body=${body}`;
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
 
-      {/* Fade animation wrapper */}
       <motion.main
         variants={fadeUp}
         initial="hidden"
@@ -118,88 +117,195 @@ const CarDetail = () => {
           </div>
         </div>
 
-        {/* Car Detail Section */}
-        <div className="container mx-auto px-4 py-10">
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            {/* Image Section */}
-            <div className="space-y-4">
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border-2 border-gray-200 shadow">
+        {/* Car Detail */}
+        <div className="container mx-auto px-4 py-10 max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-10">
+            {/* === Image Section === */}
+            <div className="relative rounded-lg overflow-hidden border shadow">
+              {images.length > 0 ? (
+                <>
+                  {/* Main image */}
+                  <img
+                    src={images[currentImageIndex]}
+                    alt={carData.name}
+                    className="w-full h-[400px] object-cover transition-transform duration-500 ease-in-out"
+                    onError={(e) =>
+                      ((e.target as HTMLImageElement).src = "/placeholder-car.jpg")
+                    }
+                  />
+
+                  {/* Navigation buttons */}
+                  {images.length > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 shadow"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 shadow"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* ✅ Thumbnail section (Jumia style) */}
+                  {images.length > 1 && (
+                    <div className="flex items-center justify-center gap-3 mt-3 p-3 flex-wrap">
+                      {images.map((img, idx) => (
+                        <div
+                          key={idx}
+                          className={`border-2 rounded-md overflow-hidden cursor-pointer transition-all ${
+                            currentImageIndex === idx
+                              ? "border-primary scale-105"
+                              : "border-gray-300 hover:border-primary"
+                          }`}
+                          onClick={() => setCurrentImageIndex(idx)}
+                        >
+                          <img
+                            src={img}
+                            alt={`Thumbnail ${idx + 1}`}
+                            className="h-16 w-20 object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
                 <img
-                  src={
-                    carData.image
-                      ? `http://127.0.0.1:8000${carData.image}`
-                      : "/placeholder-car.jpg"
-                  }
-                  alt={carData.name}
-                  className="w-full h-full object-cover"
+                  src="/placeholder-car.jpg"
+                  alt="No car image"
+                  className="w-full h-[400px] object-cover"
                 />
+              )}
+
+              {carData.status && (
                 <Badge className="absolute top-4 right-4 bg-primary/90 capitalize">
                   {carData.status}
                 </Badge>
-              </div>
+              )}
             </div>
 
-            {/* Car Info Section */}
+            {/* === Car Info === */}
             <div className="space-y-6">
               <div>
-                <h1 className="text-3xl lg:text-4xl font-bold mb-2">{carData.name}</h1>
+                <h1 className="text-3xl lg:text-4xl font-bold mb-2">
+                  {carData.name}
+                </h1>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <Badge variant="secondary">{carData.year}</Badge>
                   <Badge variant="outline">{carData.make}</Badge>
                   <Badge variant="outline">{carData.model}</Badge>
                 </div>
                 <p className="text-4xl font-bold text-primary">
-                  {carData.price
-                    ? `KES ${Number(carData.price).toLocaleString()}`
-                    : "Price on Request"}
+                  KES {Number(carData.price).toLocaleString()}
                 </p>
               </div>
 
               <Separator />
 
-              {/* Specifications */}
+              {/* Specs */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Specifications</h2>
                 <div className="grid grid-cols-2 gap-4 text-gray-800">
                   <div className="flex items-center gap-2">
                     <Fuel className="h-5 w-5 text-primary" />
-                    <span><strong>Engine:</strong> {carData.engine_type}</span>
+                    <span>
+                      <strong>Engine:</strong> {carData.engine_type}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Settings className="h-5 w-5 text-primary" />
-                    <span><strong>Transmission:</strong> {carData.transmission}</span>
+                    <span>
+                      <strong>Transmission:</strong> {carData.transmission}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Gauge className="h-5 w-5 text-primary" />
-                    <span><strong>Mileage:</strong> {carData.mileage.toLocaleString()} km</span>
+                    <span>
+                      <strong>Mileage:</strong>{" "}
+                      {carData.mileage?.toLocaleString()} km
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <PaintBucket className="h-5 w-5 text-primary" />
-                    <span><strong>Color:</strong> {carData.color}</span>
+                    <span>
+                      <strong>Color:</strong> {carData.color}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-primary" />
-                    <span><strong>Year:</strong> {carData.year}</span>
+                    <span>
+                      <strong>Year:</strong> {carData.year}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-500" />
+                    <span>
+                      <strong>Grade:</strong>{" "}
+                      {carData.grade ? carData.grade : "N/A"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Car className="h-5 w-5 text-primary" />
-                    <span><strong>Status:</strong> {carData.status}</span>
+                    <span>
+                      <strong>Status:</strong> {carData.status}
+                    </span>
                   </div>
                 </div>
               </div>
 
+              {/* Features */}
+              {carData.features && (
+                <>
+                  <Separator />
+                  <div>
+                    <h2 className="text-xl font-semibold mb-2">Features</h2>
+                    <ul className="list-disc list-inside text-gray-700">
+                      {carData.features
+                        .split("\n")
+                        .filter((f: string) => f.trim() !== "")
+                        .map((feat: string, idx: number) => (
+                          <li key={idx}>{feat}</li>
+                        ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+
               <Separator />
+
+              {/* Contact Buttons */}
+              <div className="flex flex-wrap gap-4 mt-4">
+                <Button
+                  onClick={handleWhatsApp}
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" /> WhatsApp
+                </Button>
+                <Button onClick={handleCall} variant="outline">
+                  <Phone className="mr-2 h-5 w-5" /> Call
+                </Button>
+                <Button onClick={handleEmail} variant="secondary">
+                  <Mail className="mr-2 h-5 w-5" /> Email
+                </Button>
+              </div>
             </div>
           </div>
 
           {/* Description */}
-          <Card className="mb-10">
+          <Card className="mt-12">
             <CardHeader>
-              <CardTitle>Description</CardTitle>
+              <CardTitle>Vehicle Description</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 leading-relaxed">
-                {carData.description || "No description available for this vehicle."}
+                {carData.description ||
+                  "No detailed description is available for this vehicle."}
               </p>
             </CardContent>
           </Card>
