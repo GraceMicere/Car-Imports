@@ -1,5 +1,5 @@
 import { Card } from "./ui/card";
-import { Ship, Search, GraduationCap, CarFront, Headphones } from "lucide-react";
+import { Search, CarFront } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -15,16 +15,16 @@ const services = [
     title: "Kenya Taxi Business Advisory",
     description:
       "Thinking of starting a taxi or ride-hailing business? Get professional guidance on vehicle selection, financing, and licensing to build a profitable and sustainable taxi business in Kenya.",
-    path: "/services/kenya-taxi-business-advisory",
+    path: "/services/taxi-masterclass",
   },
 ];
 
 const Services = () => {
   return (
     <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 text-center">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="mb-12">
           <div className="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-semibold mb-4">
             Comprehensive Import Services
           </div>
@@ -35,15 +35,15 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Services Grid (Centered) */}
+        <div className="flex flex-wrap justify-center gap-8">
           {services.map((service, index) => (
-            <Link to={service.path} key={index}>
-              <Card className="p-6 hover:shadow-large transition-all duration-300 border-2 hover:border-primary group cursor-pointer">
-                <div className="bg-hero-gradient p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform">
-                  <service.icon className="h-6 w-6 text-primary-foreground" />
+            <Link to={service.path} key={index} className="w-full sm:w-[80%] md:w-[45%] lg:w-[30%]">
+              <Card className="p-8 h-full flex flex-col items-center text-center hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-gray-200 hover:border-primary/70 group cursor-pointer">
+                <div className="bg-primary/10 p-4 rounded-xl w-fit mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                  <service.icon className="h-8 w-8 text-primary group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground">{service.description}</p>

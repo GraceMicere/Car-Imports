@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { fadeUp } from "../animations/fadeUp";
 import { motion } from "framer-motion";
-import { CheckCircle, Award, Users, Globe, Target, Heart } from "lucide-react";
+import { CheckCircle, Award, Users, Globe, Target, Heart, Car, Briefcase } from "lucide-react";
 
 const About = () => {
   return (
@@ -30,6 +30,34 @@ const About = () => {
           </div>
         </motion.section>
 
+        {/* ===== Popup Stats Section ===== */}
+        <motion.section
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="py-16 bg-white -mt-10 relative z-10"
+        >
+          <div className="container mx-auto px-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+              {[
+                { label: "Cars Imported", value: "10+" },
+                { label: "Happy Clients", value: "10+" },
+                { label: "Taxi Investors Trained", value: "100+" },
+                { label: "Drivers Trained", value: "200+" },
+                { label: "Drivers Connected", value: "100+" },
+              ].map(({ label, value }, index) => (
+                <Card
+                  key={index}
+                  className="py-8 px-4 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 bg-white/80 backdrop-blur-sm border border-gray-200"
+                >
+                  <h3 className="text-3xl font-bold text-green-700 mb-2">{value}</h3>
+                  <p className="text-gray-600 text-sm font-medium">{label}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
         {/* ===== About Section (Text + Image Side by Side) ===== */}
         <motion.section
           variants={fadeUp}
@@ -46,7 +74,7 @@ const About = () => {
                 Our Story
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Helping Kenyans Drive Their Dreams Home
+                Helping Kenyans Drive Their Dream Cars and Own a Stabilized Taxi Business
               </h2>
 
               <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
@@ -79,6 +107,11 @@ const About = () => {
                   <span className="font-semibold text-green-700">peace of mind</span> knowing their
                   cars are handled with care.
                 </p>
+
+                <div className="pt-4">
+                  <p className="font-semibold text-green-700">Taxi Business Advising since 2021</p>
+                  <p className="font-semibold text-green-700">Car Import Services since 2025</p>
+                </div>
               </div>
             </div>
 
@@ -165,34 +198,6 @@ const About = () => {
                   <p className="text-gray-600">{desc}</p>
                 </Card>
               ))}
-            </div>
-          </div>
-        </motion.section>
-
-        {/* ===== Google Map Section ===== */}
-        <motion.section
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="py-20 bg-gray-50"
-        >
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Find Us</h2>
-            <p className="text-gray-600 mb-8">
-              Visit our office or reach out to learn more about how we can help you import your dream car.
-            </p>
-            <div className="rounded-2xl overflow-hidden shadow-lg max-w-5xl mx-auto">
-              <iframe
-                title="Xplore Imports Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8562122365034!2d36.82194631475324!3d-1.292065035985058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10e8be52862f%3A0x9f0b4d2b9f8d11c0!2sNairobi%20CBD!5e0!3m2!1sen!2ske!4v1699874631244!5m2!1sen!2ske"
-                width="100%"
-                height="400"
-                allowFullScreen
-                loading="lazy"
-                className="border-0 w-full h-[400px]"
-              ></iframe>
             </div>
           </div>
         </motion.section>

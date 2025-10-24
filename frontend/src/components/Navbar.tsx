@@ -12,24 +12,12 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Inventory", path: "/inventory" },
-    { name: "Services", path: "/services" }, 
+    { name: "Services", path: "/services" },
     { name: "About Us", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "Contact Us", path: "/contact" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
-
-  // Smooth scroll to section on homepage
-  const handleScrollToSection = (sectionId: string) => {
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: sectionId } });
-      return;
-    }
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
@@ -38,16 +26,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="bg-hero-gradient rounded-lg transition-transform group-hover:scale-110">
-              <img
-                src="/favicon.ico"
-                alt="Kenya Imports Logo"
-                className="h-6 w-6"
-              />
+              <img src="/favicon.ico" alt="Kenya Imports Logo" className="h-6 w-6" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-foreground">
-                Xplore Car Imports
-              </span>
+              <span className="font-bold text-xl text-foreground">Xplore Car Imports</span>
               <span className="text-xs text-muted-foreground">
                 Import Cars From Japan With Ease
               </span>
@@ -60,7 +42,7 @@ const Navbar = () => {
               link.name === "Services" ? (
                 <div
                   key={link.name}
-                  className="relative"
+                  className="relative group"
                   onMouseEnter={() => setIsServicesOpen(true)}
                   onMouseLeave={() => setIsServicesOpen(false)}
                 >
@@ -75,24 +57,30 @@ const Navbar = () => {
                   </button>
 
                   {/* Dropdown Menu */}
-                  {isServicesOpen && (
-                    <div className="absolute left-0 mt-2 w-60 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-                      <button
-                        onClick={() => handleScrollToSection("vehicle-sourcing")}
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      >
-                        Vehicle Sourcing
-                      </button>
-                      <button
-                        onClick={() =>
-                          handleScrollToSection("taxi-business-advisory")
-                        }
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      >
-                        Kenya Taxi Business Advisory
-                      </button>
-                    </div>
-                  )}
+                  <div
+                    className={`absolute left-0 mt-2 w-60 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50 transition-all duration-200 ${
+                      isServicesOpen
+                        ? "opacity-100 visible translate-y-0"
+                        : "opacity-0 invisible -translate-y-2"
+                    }`}
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    <Link
+                      to="/services/vehicle-sourcing"
+                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Vehicle Sourcing
+                    </Link>
+                    <Link
+                      to="/services/taxi-masterclass"
+                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Kenya Taxi Business Advisory
+                    </Link>
+                  </div>
                 </div>
               ) : (
                 <Link
@@ -136,28 +124,26 @@ const Navbar = () => {
                   </button>
                   {isServicesOpen && (
                     <div className="pl-4 mt-1 space-y-1">
-                      <button
-                        onClick={() => handleScrollToSection("vehicle-sourcing")}
+                      <Link
+                        to="/services/vehicle-sourcing"
+                        onClick={() => {
+                          setIsOpen(false);
+                          setIsServicesOpen(false);
+                        }}
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
                       >
                         Vehicle Sourcing
-                      </button>
-                      <button
-                        onClick={() =>
-                          handleScrollToSection("importation-masterclass")
-                        }
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      >
-                        Car Importation Masterclass
-                      </button>
-                      <button
-                        onClick={() =>
-                          handleScrollToSection("taxi-business-advisory")
-                        }
+                      </Link>
+                      <Link
+                        to="/services/taxi-masterclass"
+                        onClick={() => {
+                          setIsOpen(false);
+                          setIsServicesOpen(false);
+                        }}
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
                       >
                         Kenya Taxi Business Advisory
-                      </button>
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -177,10 +163,7 @@ const Navbar = () => {
               )
             )}
             <Button variant="green" size="lg" asChild className="w-full">
-              <Link
-                to="/contact"
-                className="w-full inline-flex items-center justify-center gap-2"
-              >
+              <Link to="/contact" className="w-full inline-flex items-center justify-center gap-2">
                 Get Started Today
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>

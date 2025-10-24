@@ -7,11 +7,10 @@ import Index from "./pages/Index";
 import Inventory from "./pages/Inventory";
 import CarDetail from "./pages/CarDetail";
 import Contact from "./pages/Contact";
-import Services from "./pages/Services";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import VehicleSourcing from "./pages/VehicleSourcing";
-
+import CarImportationMasterclass from "./pages/CarImportationMasterclass";  
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,8 +23,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory/:id" element={<CarDetail />} />
-          <Route path="/services" element={<Services />} />
           <Route path="/services/vehicle-sourcing" element={<VehicleSourcing />} />
+          <Route path="/services/taxi-masterclass" element={<CarImportationMasterclass />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
