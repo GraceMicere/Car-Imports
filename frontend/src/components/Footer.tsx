@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
-import { Car, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Instagram,
+  Youtube,
+  MessageCircle,
+  Music,
+} from "lucide-react";
 
 const Footer = () => {
   return (
@@ -9,13 +18,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="bg-hero-gradient p-2 rounded-lg">
-                <img
-                  src="/favicon.ico"
-                  alt="Logo"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              <img
+                src="/favicon.ico"
+                alt="Logo"
+                className="h-10 w-10 rounded-lg object-contain"
+              />
               <div>
                 <h3 className="font-bold text-lg">Xplore Car Imports</h3>
                 <p className="text-sm opacity-80">Personalized Client Service</p>
@@ -24,20 +31,6 @@ const Footer = () => {
             <p className="text-sm opacity-80">
               Your trusted partner for importing quality vehicles from Japan, UK, and Dubai to Kenya.
             </p>
-            <div className="flex space-x-3">
-              <a href="#" className="hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -55,7 +48,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
+                <Link to="/services/vehicle-sourcing" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
                   Services
                 </Link>
               </li>
@@ -94,13 +87,19 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <a href="tel:+254757356989" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
+                <a
+                  href="tel:+254757356989"
+                  className="opacity-80 hover:opacity-100 hover:text-primary transition-all"
+                >
                   +254 757 356 989
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <a href="mailto:info@kenyaimports.com" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
+                <a
+                  href="mailto:info@xplorecarimports.com"
+                  className="opacity-80 hover:opacity-100 hover:text-primary transition-all"
+                >
                   info@xplorecarimports.com
                 </a>
               </li>
@@ -108,8 +107,81 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-background/20 mt-8 pt-8 text-center text-sm opacity-80">
-          <p>&copy; {new Date().getFullYear()} Xplore Car Imports. All rights reserved.</p>
+        {/* Centered Social Icons */}
+        <div className="mt-10 flex justify-center space-x-6">
+          {/* Facebook */}
+          <a
+            href="https://wa.me/254757356989"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform transform hover:scale-110"
+            title="Facebook"
+          >
+            <Facebook className="h-6 w-6 text-[#1877F2]" />
+          </a>
+
+          {/* Instagram */}
+          <a
+            href="https://wa.me/254757356989"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform transform hover:scale-110"
+            title="Instagram"
+          >
+            <Instagram className="h-6 w-6 text-[#E1306C]" />
+          </a>
+
+          {/* YouTube */}
+          <a
+            href="https://wa.me/254757356989"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform transform hover:scale-110"
+            title="YouTube"
+          >
+            <Youtube className="h-6 w-6 text-[#FF0000]" />
+          </a>
+
+          {/* TikTok */}
+          <a
+            href="https://wa.me/254757356989"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform transform hover:scale-110"
+            title="TikTok"
+          >
+            <Music className="h-6 w-6 text-[#000000]" />
+          </a>
+
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/254757356989"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform transform hover:scale-110"
+            title="WhatsApp"
+          >
+            <MessageCircle className="h-6 w-6 text-[#25D366]" />
+          </a>
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="border-t border-background/20 mt-10 pt-6 text-center text-sm opacity-80">
+          <p>
+            &copy; {new Date().getFullYear()} Xplore Car Imports. All rights
+            reserved.
+          </p>
+          <p className="mt-2">
+            Powered by{" "}
+            <a
+              href="https://wa.me/254757356989"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[#25D366] hover:underline"
+            >
+              CodeConjurer Technologies
+            </a>
+          </p>
         </div>
       </div>
     </footer>
