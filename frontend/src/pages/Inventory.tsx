@@ -61,7 +61,7 @@ function Inventory() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          🚘 Explore Our Car Collection
+          Explore Our Car Collection
         </motion.h2>
 
         {/* Cars Grid */}
@@ -139,7 +139,7 @@ function Inventory() {
         {/* Authenticity Section */}
         <section className="mt-20 text-center">
           <h3 className="text-2xl font-semibold mb-4 text-gray-800">
-            ✅ 100% Verified Car Listings
+            100% Verified Car Listings
           </h3>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Every vehicle listed on our platform is verified for authenticity,

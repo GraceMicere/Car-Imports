@@ -25,11 +25,11 @@ const Footer = () => {
               />
               <div>
                 <h3 className="font-bold text-lg">Xplore Car Imports</h3>
-                <p className="text-sm opacity-80">Personalized Client Service</p>
+                <p className="text-sm opacity-80">Import Cars From Japan With Ease</p>
               </div>
             </div>
             <p className="text-sm opacity-80">
-              Your trusted partner for importing quality vehicles from Japan, UK, and Dubai to Kenya.
+              Your trusted partner for importing quality vehicles from Japan to Kenya.
             </p>
           </div>
 
