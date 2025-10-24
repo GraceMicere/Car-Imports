@@ -5,7 +5,7 @@ import { Card } from "./ui/card";
 import { ArrowRight, Fuel, Gauge, Calendar } from "lucide-react";
 import { fetchCars } from "../services/api";
 
-// Define TypeScript type for car objects
+
 interface Car {
   id: number;
   name: string;
@@ -56,23 +56,25 @@ const FeaturedCars = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Featured Vehicles</h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            Featured Vehicles
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Explore our handpicked selection of premium imported vehicles, ready for delivery to Kenya.
           </p>
         </div>
 
         {/* Loading / Empty states */}
         {loading ? (
-          <div className="text-center py-10 text-gray-500">
+          <div className="text-center py-10 text-gray-500 dark:text-gray-400">
             Loading featured cars...
           </div>
         ) : cars.length === 0 ? (
-          <div className="text-center py-10 text-gray-500">
+          <div className="text-center py-10 text-gray-500 dark:text-gray-400">
             No cars available at the moment.
           </div>
         ) : (
@@ -80,7 +82,7 @@ const FeaturedCars = () => {
             {cars.map((car) => (
               <Card
                 key={car.id}
-                className="group overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-blue-500"
+                className="group overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 bg-white dark:bg-gray-800"
               >
                 {/* Car Image */}
                 <div className="relative overflow-hidden aspect-[4/3]">
@@ -98,7 +100,7 @@ const FeaturedCars = () => {
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         car.status === "available"
                           ? "bg-green-500 text-white"
-                          : "bg-yellow-400 text-black"
+                          : "bg-yellow-400 text-black dark:text-gray-900"
                       }`}
                     >
                       {car.status || "N/A"}
@@ -109,10 +111,10 @@ const FeaturedCars = () => {
                 {/* Car Details */}
                 <div className="p-6 space-y-4">
                   <div>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-gray-900 dark:text-white transition-colors">
                       {car.name || "Unnamed Car"}
                     </h3>
-                    <p className="text-2xl font-bold text-blue-600">
+                    <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                       {car.price
                         ? `KES ${Number(car.price).toLocaleString()}`
                         : "Price on Request"}
@@ -120,7 +122,7 @@ const FeaturedCars = () => {
                   </div>
 
                   {/* Car Specs */}
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                  <div className="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
                       <span>{car.year || "—"}</span>
@@ -139,7 +141,11 @@ const FeaturedCars = () => {
                     </div>
                   </div>
 
-                  <Button variant="default" className="w-full" asChild>
+                  <Button
+                    variant="default"
+                    className="w-full dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition-colors"
+                    asChild
+                  >
                     <Link to={`/inventory/${car.id}`}>
                       View Details
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -153,7 +159,12 @@ const FeaturedCars = () => {
 
         {/* View All Button */}
         <div className="text-center">
-          <Button variant="hero" size="lg" asChild>
+          <Button
+            variant="hero"
+            size="lg"
+            asChild
+            className="dark:bg-blue-600 dark:hover:bg-blue-500 dark:text-white transition-colors"
+          >
             <Link to="/inventory">
               View All Inventory
               <ArrowRight className="ml-2 h-5 w-5" />

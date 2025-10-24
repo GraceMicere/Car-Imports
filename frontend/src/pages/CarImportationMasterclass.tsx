@@ -11,13 +11,13 @@ const CarImportationMasterclass: React.FC = () => {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-r from-green-50 via-white to-green-50 py-16">
+      <section className="relative bg-green-50 dark:bg-gray-900 py-16 transition-colors duration-300">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 px-6">
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight">
               Car Importation & Taxi Business Masterclass
             </h1>
-            <p className="mt-5 text-gray-700 text-lg leading-relaxed">
+            <p className="mt-5 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               Thinking of joining Kenya's online taxi economy? This masterclass walks you through
               everything — from choosing the right vehicle and understanding platforms like Uber and
               Bolt, to cost breakdowns, documentation, and profit insights. Perfect for new drivers,
@@ -53,16 +53,16 @@ const CarImportationMasterclass: React.FC = () => {
             <img
               src="/images/taxi-driver-training.jpg"
               alt="Taxi Training"
-              className="rounded-2xl shadow-md object-cover w-full h-[300px]"
+              className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px]"
             />
           </div>
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-semibold mb-3">1. Taxi Business Masterclass</h2>
-            <p className="text-gray-700 mb-4">
+            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">1. Taxi Business Masterclass</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               A hands-on, revenue-focused module that gives you everything you need to run a
               profitable taxi business — whether you want to drive part-time or build a full-time fleet.
             </p>
-            <ul className="space-y-3 text-gray-700">
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               <li><strong>Training:</strong> Platform setup, customer handling, and safety basics.</li>
               <li><strong>Cost & revenue analysis:</strong> Templates to calculate expenses and profits.</li>
               <li><strong>Pros & cons:</strong> Honest breakdown of platform dynamics and challenges.</li>
@@ -75,12 +75,12 @@ const CarImportationMasterclass: React.FC = () => {
         {/* PILLAR 2 */}
         <div className="flex flex-col-reverse md:flex-row items-center gap-10">
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-semibold mb-3">2. Driver Management</h2>
-            <p className="text-gray-700 mb-4">
+            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">2. Driver Management</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               Build a dependable and professional team. Learn to recruit, train, monitor and motivate drivers
               to maintain consistency and reliability in your operations.
             </p>
-            <ul className="space-y-3 text-gray-700">
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               <li><strong>Recruitment:</strong> Find and onboard reliable, well-vetted drivers.</li>
               <li><strong>Monitoring & performance:</strong> Tools to track daily performance and ratings.</li>
               <li><strong>Payment & incentives:</strong> Transparent and motivating compensation systems.</li>
@@ -92,7 +92,7 @@ const CarImportationMasterclass: React.FC = () => {
             <img
               src="/images/driver-management.jpg"
               alt="Driver Management"
-              className="rounded-2xl shadow-md object-cover w-full h-[300px]"
+              className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px]"
             />
           </div>
         </div>
@@ -103,16 +103,16 @@ const CarImportationMasterclass: React.FC = () => {
             <img
               src="/images/car-documents.jpg"
               alt="Car Documents and Compliance"
-              className="rounded-2xl shadow-md object-cover w-full h-[300px]"
+              className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px]"
             />
           </div>
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-semibold mb-3">3. Documents & Compliance</h2>
-            <p className="text-gray-700 mb-4">
+            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">3. Documents & Compliance</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               Navigate Kenya’s regulatory landscape confidently. Learn which documents you need for
               both car and driver to stay compliant and avoid penalties.
             </p>
-            <ul className="space-y-3 text-gray-700">
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               <li><strong>Car documents:</strong> Logbook, customs clearance, inspection reports.</li>
               <li><strong>Driver documents:</strong> Valid PSV licenses, contracts, and IDs.</li>
               <li><strong>Insurance & licensing:</strong> Best policies and renewal procedures.</li>
@@ -121,45 +121,46 @@ const CarImportationMasterclass: React.FC = () => {
         </div>
 
         {/* MAINTENANCE */}
-        <div className="bg-gradient-to-r from-green-100 via-white to-green-100 p-10 rounded-3xl shadow-md">
-          <h3 className="text-2xl font-semibold mb-4">Car Maintenance & Parts</h3>
-          <p className="text-gray-700 mb-6">
+        <div className="p-10 rounded-3xl shadow-md bg-green-100 dark:bg-gray-800 dark:shadow-gray-700 transition-colors duration-300">
+          <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Car Maintenance & Parts</h3>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
             Preventive maintenance keeps your cars profitable. Learn service intervals, sourcing quality
             parts, and building relationships with reliable vendors.
           </p>
           <div className="grid gap-6 md:grid-cols-3">
             <div>
               <img src="/images/car-service.jpg" alt="Service" className="rounded-lg mb-3 w-full h-[200px] object-cover" />
-              <h4 className="font-semibold">Service</h4>
-              <p className="text-sm text-gray-700">
+              <h4 className="font-semibold text-gray-900 dark:text-gray-100">Service</h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
                 Track maintenance routines — oil changes, brakes, suspension — to extend vehicle lifespan.
               </p>
             </div>
             <div>
               <img src="/images/car-parts.jpg" alt="Parts" className="rounded-lg mb-3 w-full h-[200px] object-cover" />
-              <h4 className="font-semibold">Parts</h4>
-              <p className="text-sm text-gray-700">
+              <h4 className="font-semibold text-gray-900 dark:text-gray-100">Parts</h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
                 Source quality spare parts affordably, manage inventory, and reduce downtime.
               </p>
             </div>
             <div>
               <img src="/images/mechanic.jpg" alt="Mechanics" className="rounded-lg mb-3 w-full h-[200px] object-cover" />
-              <h4 className="font-semibold">Repairs & Vendors</h4>
-              <p className="text-sm text-gray-700">
+              <h4 className="font-semibold text-gray-900 dark:text-gray-100">Repairs & Vendors</h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
                 Build a trusted network of mechanics and workshops for quick, quality repairs.
               </p>
             </div>
           </div>
         </div>
       </section>
+
       {/* ✅ ENROLL MODAL */}
       {showModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 px-4 sm:px-6 overflow-auto">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl relative animate-fadeInScale">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl dark:shadow-gray-700 w-full max-w-3xl relative animate-fadeInScale transition-colors duration-300">
             {/* Close button */}
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl z-10"
+              className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-3xl z-10"
             >
               &times;
             </button>

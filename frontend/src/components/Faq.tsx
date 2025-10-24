@@ -73,7 +73,10 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-gray-50">
+    <section
+      id="faq"
+      className="py-20 bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500"
+    >
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="text-3xl font-bold text-center mb-12">
           Frequently Asked Questions
@@ -82,13 +85,13 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white shadow-sm rounded-lg border hover:shadow-md transition"
+              className="bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm rounded-lg border hover:shadow-md transition-all duration-300"
             >
               <button
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex justify-between items-center px-6 py-4 text-left font-medium text-lg"
               >
-                {faq.question}
+                <span>{faq.question}</span>
                 <ChevronDown
                   className={`w-5 h-5 transform transition-transform ${
                     activeIndex === index ? "rotate-180" : ""
@@ -103,7 +106,7 @@ const FAQ = () => {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="px-6 pb-4 text-gray-600"
+                    className="px-6 pb-4 text-gray-600 dark:text-gray-300"
                   >
                     {faq.answer}
                   </motion.div>

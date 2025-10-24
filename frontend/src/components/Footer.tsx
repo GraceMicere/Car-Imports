@@ -12,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -37,31 +37,16 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/inventory" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
-                  Inventory
-                </Link>
-              </li>
-              <li>
-                <Link to="/services/vehicle-sourcing" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
-                  Contact
-                </Link>
-              </li>
+              {["Home", "Inventory", "Services", "About Us", "Contact"].map((link, idx) => (
+                <li key={idx}>
+                  <Link
+                    to={link === "Home" ? "/" : `/${link.toLowerCase().replace(/\s/g, '-')}`}
+                    className="opacity-80 hover:opacity-100 hover:text-primary dark:hover:text-primary transition-all"
+                  >
+                    {link}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -89,7 +74,7 @@ const Footer = () => {
                 <Phone className="h-4 w-4 flex-shrink-0" />
                 <a
                   href="tel:+254757356989"
-                  className="opacity-80 hover:opacity-100 hover:text-primary transition-all"
+                  className="opacity-80 hover:opacity-100 hover:text-primary dark:hover:text-primary transition-all"
                 >
                   +254 757 356 989
                 </a>
@@ -98,7 +83,7 @@ const Footer = () => {
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <a
                   href="mailto:info@xplorecarimports.com"
-                  className="opacity-80 hover:opacity-100 hover:text-primary transition-all"
+                  className="opacity-80 hover:opacity-100 hover:text-primary dark:hover:text-primary transition-all"
                 >
                   info@xplorecarimports.com
                 </a>
@@ -109,67 +94,26 @@ const Footer = () => {
 
         {/* Centered Social Icons */}
         <div className="mt-10 flex justify-center space-x-6">
-          {/* Facebook */}
-          <a
-            href="https://wa.me/254757356989"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform transform hover:scale-110"
-            title="Facebook"
-          >
-            <Facebook className="h-6 w-6 text-[#1877F2]" />
-          </a>
-
-          {/* Instagram */}
-          <a
-            href="https://wa.me/254757356989"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform transform hover:scale-110"
-            title="Instagram"
-          >
-            <Instagram className="h-6 w-6 text-[#E1306C]" />
-          </a>
-
-          {/* YouTube */}
-          <a
-            href="https://wa.me/254757356989"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform transform hover:scale-110"
-            title="YouTube"
-          >
-            <Youtube className="h-6 w-6 text-[#FF0000]" />
-          </a>
-
-          {/* TikTok */}
-          <a
-            href="https://wa.me/254757356989"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform transform hover:scale-110"
-            title="TikTok"
-          >
-            <Music className="h-6 w-6 text-[#000000]" />
-          </a>
-
-          {/* WhatsApp */}
-          <a
-            href="https://wa.me/254757356989"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform transform hover:scale-110"
-            title="WhatsApp"
-          >
-            <MessageCircle className="h-6 w-6 text-[#25D366]" />
-          </a>
+          {[Facebook, Instagram, Youtube, Music, MessageCircle].map((Icon, idx) => {
+            const colors = ["#1877F2", "#E1306C", "#FF0000", "#000", "#25D366"];
+            return (
+              <a
+                key={idx}
+                href="https://wa.me/254757356989"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform transform hover:scale-110"
+              >
+                <Icon className={`h-6 w-6`} style={{ color: colors[idx] }} />
+              </a>
+            );
+          })}
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-background/20 mt-10 pt-6 text-center text-sm opacity-80">
+        <div className="border-t border-gray-300 dark:border-gray-700 mt-10 pt-6 text-center text-sm opacity-80">
           <p>
-            &copy; {new Date().getFullYear()} Xplore Car Imports. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Xplore Car Imports. All rights reserved.
           </p>
           <p className="mt-2">
             Powered by{" "}

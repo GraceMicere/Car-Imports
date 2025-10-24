@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { submitCarEnquiry } from "@/services/api"; // adjust import if needed
+import { submitCarEnquiry } from "@/services/api"; 
 
-// Define props type
 interface Car {
   id: number;
-  name: string;
+  name?: string;
   make?: string;
   model?: string;
 }
@@ -15,7 +14,6 @@ interface CarEnquiryFormProps {
   onClose?: () => void;
   disableClose?: boolean;
 }
-
 
 const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
   const [formData, setFormData] = useState({
@@ -32,7 +30,6 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Auto-update when car changes
   useEffect(() => {
     if (car) {
       setFormData((prev) => ({
@@ -92,11 +89,10 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
 
   return (
     <section className="p-6 relative">
-      {/* Optional Close Button */}
       {onClose && (
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
+          className="absolute top-6 right-6 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full p-2 text-gray-700 dark:text-gray-200 transition-all"
         >
           ✕
         </button>
@@ -108,7 +104,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="bg-white p-8 rounded-2xl shadow-lg grid gap-6"
+          className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-8 rounded-2xl shadow-lg grid gap-6 transition-colors"
         >
           <h2 className="text-2xl font-bold text-center mb-2">
             Enquire about {car ? car.name : "a Vehicle"}
@@ -122,7 +118,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               value={formData.full_name}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
@@ -134,7 +130,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
@@ -146,7 +142,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
@@ -157,7 +153,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               value={formData.vehicle_of_interest}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
             >
               <option value="">Select Vehicle</option>
               {carOptions.map((c) => (
@@ -175,7 +171,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               value={formData.budget_range}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
             >
               <option value="">Select Budget Range</option>
               {budgetOptions.map((b) => (
@@ -194,7 +190,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               onChange={handleChange}
               rows={4}
               placeholder="Tell us more about your needs..."
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
@@ -217,4 +213,3 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
 };
 
 export default CarEnquiryForm;
-

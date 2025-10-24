@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -58,7 +58,7 @@ const Navbar = () => {
 
                   {/* Dropdown Menu */}
                   <div
-                    className={`absolute left-0 mt-2 w-60 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50 transition-all duration-200 ${
+                    className={`absolute left-0 mt-2 w-60 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 z-50 transition-all duration-200 ${
                       isServicesOpen
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
@@ -68,14 +68,14 @@ const Navbar = () => {
                   >
                     <Link
                       to="/services/vehicle-sourcing"
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                       onClick={() => setIsServicesOpen(false)}
                     >
                       Vehicle Sourcing
                     </Link>
                     <Link
                       to="/services/taxi-masterclass"
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                       onClick={() => setIsServicesOpen(false)}
                     >
                       Kenya Taxi Business Advisory
@@ -96,9 +96,14 @@ const Navbar = () => {
                 </Link>
               )
             )}
-            <Button variant="green" size="sm" asChild className="ml-4">
-              <Link to="/contact">Get Started</Link>
-            </Button>
+
+            {/* 🌙 Theme Toggle + Button */}
+            <div className="flex items-center gap-3 ml-4">
+              <ThemeToggle />
+              <Button variant="green" size="sm" asChild>
+                <Link to="/contact">Get Started</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -118,7 +123,7 @@ const Navbar = () => {
                 <div key={link.name}>
                   <button
                     onClick={() => setIsServicesOpen(!isServicesOpen)}
-                    className="w-full text-left px-4 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted flex justify-between items-center"
+                    className="w-full text-left px-4 py-2 rounded-md text-sm font-medium text-foreground dark:text-gray-100 hover:bg-muted flex justify-between items-center transition-colors"
                   >
                     Services <ChevronDown className="h-4 w-4" />
                   </button>
@@ -130,7 +135,7 @@ const Navbar = () => {
                           setIsOpen(false);
                           setIsServicesOpen(false);
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                       >
                         Vehicle Sourcing
                       </Link>
@@ -140,7 +145,7 @@ const Navbar = () => {
                           setIsOpen(false);
                           setIsServicesOpen(false);
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                       >
                         Kenya Taxi Business Advisory
                       </Link>
@@ -162,12 +167,17 @@ const Navbar = () => {
                 </Link>
               )
             )}
-            <Button variant="green" size="lg" asChild className="w-full">
-              <Link to="/contact" className="w-full inline-flex items-center justify-center gap-2">
-                Get Started Today
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+
+            {/* 🌙 Theme Toggle + CTA Button (Mobile) */}
+            <div className="flex flex-col gap-3 mt-4 px-4">
+              <ThemeToggle />
+              <Button variant="green" size="lg" asChild className="w-full">
+                <Link to="/contact" className="w-full inline-flex items-center justify-center gap-2">
+                  Get Started Today
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         )}
       </div>

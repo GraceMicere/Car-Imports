@@ -27,7 +27,6 @@ import { useToast } from "@/hooks/use-toast";
 import { fetchCars } from "../services/api";
 import CarInventoryEnquiry from "../components/CarInventoryEnquiry";
 
-// ✅ Define minimal Car interface for TypeScript
 interface Car {
   id: number;
   name: string;
@@ -65,7 +64,6 @@ const CarDetail = () => {
 
         setCarData(foundCar);
 
-        // ✅ Ensure absolute URLs
         const fullImages = (foundCar.images || []).map((img: string) =>
           img.startsWith("http") ? img : `http://127.0.0.1:8000${img}`
         );
@@ -82,7 +80,7 @@ const CarDetail = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center text-gray-500">
+      <div className="h-screen flex items-center justify-center text-gray-500 dark:text-gray-300">
         Loading car details...
       </div>
     );
@@ -97,7 +95,6 @@ const CarDetail = () => {
   const handlePrevImage = () =>
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  // Contact handlers
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
       `Hi, I'm interested in the ${carData.name} listed on your website.`
@@ -118,21 +115,21 @@ const CarDetail = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background dark:bg-gray-900 dark:text-white transition-colors">
       <Navbar />
 
       <motion.main
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="flex-1 bg-gray-50"
+        className="flex-1 bg-gray-50 dark:bg-gray-900 transition-colors"
       >
         {/* Breadcrumb */}
-        <div className="bg-gray-100 py-4">
+        <div className="bg-gray-100 dark:bg-gray-800 py-4 transition-colors">
           <div className="container mx-auto px-4">
             <Link
               to="/inventory"
-              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Inventory
@@ -144,7 +141,7 @@ const CarDetail = () => {
         <div className="container mx-auto px-4 py-10 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-10">
             {/* === Image Section === */}
-            <div className="relative rounded-lg overflow-hidden border shadow">
+            <div className="relative rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow transition-colors">
               {images.length > 0 ? (
                 <>
                   {/* Main image */}
@@ -162,20 +159,20 @@ const CarDetail = () => {
                     <>
                       <button
                         onClick={handlePrevImage}
-                        className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 shadow"
+                        className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/70 dark:bg-gray-700/70 hover:bg-white dark:hover:bg-gray-600 rounded-full p-2 shadow transition-colors"
                       >
                         <ChevronLeft className="h-5 w-5" />
                       </button>
                       <button
                         onClick={handleNextImage}
-                        className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 shadow"
+                        className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/70 dark:bg-gray-700/70 hover:bg-white dark:hover:bg-gray-600 rounded-full p-2 shadow transition-colors"
                       >
                         <ChevronRight className="h-5 w-5" />
                       </button>
                     </>
                   )}
 
-                  {/* ✅ Thumbnail section (Jumia style) */}
+                  {/* Thumbnails */}
                   {images.length > 1 && (
                     <div className="flex items-center justify-center gap-3 mt-3 p-3 flex-wrap">
                       {images.map((img, idx) => (
@@ -184,7 +181,7 @@ const CarDetail = () => {
                           className={`border-2 rounded-md overflow-hidden cursor-pointer transition-all ${
                             currentImageIndex === idx
                               ? "border-primary scale-105"
-                              : "border-gray-300 hover:border-primary"
+                              : "border-gray-300 dark:border-gray-600 hover:border-primary"
                           }`}
                           onClick={() => setCurrentImageIndex(idx)}
                         >
@@ -216,7 +213,7 @@ const CarDetail = () => {
             {/* === Car Info === */}
             <div className="space-y-6">
               <div>
-                <h1 className="text-3xl lg:text-4xl font-bold mb-2">
+                <h1 className="text-3xl lg:text-4xl font-bold mb-2 dark:text-white">
                   {carData.name}
                 </h1>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -233,8 +230,10 @@ const CarDetail = () => {
 
               {/* Specs */}
               <div>
-                <h2 className="text-xl font-semibold mb-4">Specifications</h2>
-                <div className="grid grid-cols-2 gap-4 text-gray-800">
+                <h2 className="text-xl font-semibold mb-4 dark:text-white">
+                  Specifications
+                </h2>
+                <div className="grid grid-cols-2 gap-4 text-gray-800 dark:text-gray-300">
                   <div className="flex items-center gap-2">
                     <Fuel className="h-5 w-5 text-primary" />
                     <span>
@@ -287,8 +286,10 @@ const CarDetail = () => {
                 <>
                   <Separator />
                   <div>
-                    <h2 className="text-xl font-semibold mb-2">Features</h2>
-                    <ul className="list-disc list-inside text-gray-700">
+                    <h2 className="text-xl font-semibold mb-2 dark:text-white">
+                      Features
+                    </h2>
+                    <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
                       {carData.features
                         .split("\n")
                         .filter((f: string) => f.trim() !== "")
@@ -305,7 +306,7 @@ const CarDetail = () => {
               {/* Inventory Enquiry Modal */}
               {selectedCar && (
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 px-4">
-                  <div className="bg-white rounded-2xl max-h-[90vh] overflow-y-auto w-full max-w-2xl p-6 relative shadow-2xl animate-fadeInScale flex flex-col justify-center items-center">
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl max-h-[90vh] overflow-y-auto w-full max-w-2xl p-6 relative shadow-2xl animate-fadeInScale flex flex-col justify-center items-center">
                     <CarInventoryEnquiry
                       car={selectedCar}
                       onClose={() => setSelectedCar(null)}
@@ -336,12 +337,12 @@ const CarDetail = () => {
           </div>
 
           {/* Description */}
-          <Card className="mt-12">
+          <Card className="mt-12 bg-white dark:bg-gray-800 transition-colors">
             <CardHeader>
-              <CardTitle>Vehicle Description</CardTitle>
+              <CardTitle className="dark:text-white">Vehicle Description</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {carData.description ||
                   "No detailed description is available for this vehicle."}
               </p>

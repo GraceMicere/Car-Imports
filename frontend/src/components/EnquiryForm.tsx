@@ -48,7 +48,7 @@ const EnquiryForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid md:grid-cols-2 gap-6 bg-white p-8 rounded-xl shadow-md"
+      className="grid md:grid-cols-2 gap-6 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-8 rounded-xl shadow-md transition-colors duration-300"
     >
       <div>
         <label className="block font-semibold mb-2">Full Name</label>
@@ -57,7 +57,7 @@ const EnquiryForm = () => {
           name="full_name"
           value={formData.full_name}
           onChange={handleChange}
-          className="w-full border rounded-md p-3 focus:ring focus:ring-primary/40"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring focus:ring-primary/40 transition-colors duration-300"
           required
         />
       </div>
@@ -69,7 +69,7 @@ const EnquiryForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full border rounded-md p-3 focus:ring focus:ring-primary/40"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring focus:ring-primary/40 transition-colors duration-300"
           required
         />
       </div>
@@ -82,7 +82,7 @@ const EnquiryForm = () => {
           value={formData.phone}
           onChange={handleChange}
           placeholder="+254 700 000 000"
-          className="w-full border rounded-md p-3 focus:ring focus:ring-primary/40"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring focus:ring-primary/40 transition-colors duration-300"
         />
       </div>
 
@@ -94,7 +94,7 @@ const EnquiryForm = () => {
           value={formData.subject}
           onChange={handleChange}
           placeholder="Inquiry about vehicle import"
-          className="w-full border rounded-md p-3 focus:ring focus:ring-primary/40"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring focus:ring-primary/40 transition-colors duration-300"
         />
       </div>
 
@@ -106,7 +106,7 @@ const EnquiryForm = () => {
           onChange={handleChange}
           rows={4}
           placeholder="Please describe your vehicle import needs, timeline, and any specific requirements..."
-          className="w-full border rounded-md p-3 focus:ring focus:ring-primary/40"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-3 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring focus:ring-primary/40 transition-colors duration-300"
           required
         ></textarea>
       </div>
@@ -114,7 +114,7 @@ const EnquiryForm = () => {
       <div className="md:col-span-2 text-center">
         <button
           type="submit"
-          className="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition"
+          className="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors duration-300"
         >
           Send Message
         </button>

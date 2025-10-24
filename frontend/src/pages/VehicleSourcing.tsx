@@ -133,14 +133,14 @@ const VehicleSourcing = () => {
         </section>
 
         {/* WHY CHOOSE US */}
-        <section className="py-20 bg-gradient-to-r from-indigo-50 via-white to-indigo-50">
+        <section className="py-20 bg-gradient-to-r from-indigo-50 via-white to-indigo-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.h2
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="text-3xl font-bold text-center mb-12"
+              className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100"
             >
               Why Choose Our Vehicle Sourcing?
             </motion.h2>
@@ -185,11 +185,11 @@ const VehicleSourcing = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className="p-6 rounded-xl bg-white shadow-md border-l-4 border-primary/40"
+                  className="p-6 rounded-xl bg-white dark:bg-gray-700 shadow-md border-l-4 border-primary/40 dark:border-primary-dark/40 transition-colors duration-300"
                 >
-                  <item.icon className="text-primary w-8 h-8 mb-3" />
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
+                  <item.icon className="text-primary dark:text-primary-dark w-8 h-8 mb-3" />
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{item.title}</h3>
+                  <p className="text-muted-foreground dark:text-gray-300">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -278,14 +278,14 @@ const VehicleSourcing = () => {
         </section>
 
         {/* VEHICLE TYPES */}
-        <section className="py-20 bg-gradient-to-r from-primary/5 to-indigo-50 overflow-hidden">
+        <section className="py-20 bg-background dark:bg-gray-900 overflow-hidden transition-colors duration-300">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.h2
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="text-3xl font-bold text-center mb-12"
+              className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100"
             >
               Popular Vehicles We Source for Kenya
             </motion.h2>
@@ -324,14 +324,14 @@ const VehicleSourcing = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className="p-6 bg-white rounded-2xl shadow-md border-l-4 border-primary/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
+                  className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md border-l-4 border-primary/40 dark:border-primary-dark/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <item.icon className="w-8 h-8 text-primary" />
-                    <h3 className="text-xl font-semibold">{item.title}</h3>
+                    <item.icon className="w-8 h-8 text-primary dark:text-primary-dark" />
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{item.title}</h3>
                   </div>
-                  <p className="text-muted-foreground mb-4">{item.desc}</p>
-                  <ul className="list-disc list-inside text-muted-foreground space-y-1 text-sm">
+                  <p className="text-muted-foreground dark:text-gray-300 mb-4">{item.desc}</p>
+                  <ul className="list-disc list-inside text-muted-foreground dark:text-gray-300 space-y-1 text-sm">
                     {item.models.map((model, idx) => (
                       <li key={idx}>{model}</li>
                     ))}
@@ -342,12 +342,12 @@ const VehicleSourcing = () => {
           </div>
         </section>
       </main>
-      <section className="py-16 bg-gray-50" id="form">
+      <section className="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300" id="form">
         <div className="container mx-auto px-4 max-w-3xl text-center mb-10">
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100">
             Enquire About Vehicle Sourcing
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground dark:text-gray-300">
             Have specific vehicle requirements in mind? Fill out the form below and
             our team will get back to you with the best sourcing options tailored to your needs.
           </p>

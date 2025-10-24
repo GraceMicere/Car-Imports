@@ -39,24 +39,24 @@ function Inventory() {
   }, []);
 
   if (loading) {
-    return <div className="text-center mt-10 text-lg">Loading cars...</div>;
+    return <div className="text-center mt-10 text-lg dark:text-gray-300">Loading cars...</div>;
   }
 
   if (cars.length === 0) {
     return (
-      <div className="text-center mt-10 text-gray-600">
+      <div className="text-center mt-10 text-gray-600 dark:text-gray-400">
         No cars available right now. Check again later!
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors">
       <Navbar />
 
       <main className="container mx-auto p-6">
         <motion.h2
-          className="text-3xl font-bold mb-8 text-center text-gray-800"
+          className="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -76,7 +76,7 @@ function Inventory() {
             return (
               <motion.div
                 key={car.id}
-                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-md dark:shadow-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 group"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
@@ -101,18 +101,18 @@ function Inventory() {
 
                 {/* Car Details */}
                 <div className="p-5">
-                  <h3 className="text-lg font-semibold mb-1">{car.name}</h3>
-                  <p className="text-gray-600 text-sm mb-1">
+                  <h3 className="text-lg font-semibold mb-1 dark:text-white">{car.name}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">
                     {car.make} • {car.model} • {car.year}
                   </p>
-                  <p className="text-gray-700 font-medium mb-1">
+                  <p className="text-gray-700 dark:text-gray-200 font-medium mb-1">
                     {car.engine_type} • {car.transmission}
                   </p>
-                  <p className="text-gray-700 mb-1">
+                  <p className="text-gray-700 dark:text-gray-200 mb-1">
                     <strong>Price:</strong> KES{" "}
                     {Number(car.price).toLocaleString()}
                   </p>
-                  <p className="text-gray-500 text-sm mb-3">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
                     {car.mileage?.toLocaleString()} km • {car.color}
                   </p>
 
@@ -139,10 +139,10 @@ function Inventory() {
 
         {/* Authenticity Section */}
         <section className="mt-20 text-center">
-          <h3 className="text-2xl font-semibold mb-4 text-gray-800">
+          <h3 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">
             100% Verified Car Listings
           </h3>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Every vehicle listed on our platform is verified for authenticity,
             mileage accuracy, and ownership history. We ensure you buy with
             confidence.
@@ -154,7 +154,7 @@ function Inventory() {
       {selectedCar && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 px-4">
           {/* Modal container */}
-          <div className="bg-white rounded-2xl max-h-[90vh] overflow-y-auto w-full max-w-2xl p-6 relative shadow-2xl animate-fadeInScale flex flex-col justify-center items-center">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl max-h-[90vh] overflow-y-auto w-full max-w-2xl p-6 relative shadow-2xl dark:shadow-gray-700 animate-fadeInScale flex flex-col justify-center items-center">
             <CarInventoryEnquiry
               car={selectedCar}
               onClose={() => setSelectedCar(null)}
@@ -164,11 +164,11 @@ function Inventory() {
       )}
 
       {/* ✅ New Car Enquiry Section */}
-      <section className="py-16 bg-white text-center px-6 md:px-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+      <section className="py-16 bg-white dark:bg-gray-800 text-center px-6 md:px-12 transition-colors">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">
           Do you have a car you’d like us to import for you?
         </h2>
-        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
           Fill out the form below and we will get in touch
           with you to discuss your preferences.
         </p>
