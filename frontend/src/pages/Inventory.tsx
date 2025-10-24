@@ -5,7 +5,8 @@ import { fadeUp } from "../animations/fadeUp";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import CarInventoryEnquiry from "../components/CarInventoryEnquiry"; // ✅ new component
+import CarInventoryEnquiry from "../components/CarInventoryEnquiry"; 
+import CarEnquiryForm from "../components/CarEnquiryForm";
 
 interface Car {
   id: number;
@@ -146,28 +147,10 @@ function Inventory() {
             mileage accuracy, and ownership history. We ensure you buy with
             confidence.
           </p>
-
-          <div className="flex justify-center gap-6 mt-8 flex-wrap">
-            <img
-              src="/images/authenticity1.jpg"
-              alt="Verification"
-              className="w-60 h-40 object-cover rounded-lg shadow"
-            />
-            <img
-              src="/images/authenticity2.jpg"
-              alt="Inspection"
-              className="w-60 h-40 object-cover rounded-lg shadow"
-            />
-            <img
-              src="/images/authenticity3.jpg"
-              alt="Delivery"
-              className="w-60 h-40 object-cover rounded-lg shadow"
-            />
-          </div>
         </section>
       </main>
 
-      {/* Car Enquiry Modal */}
+      {/* Inventory Enquiry Modal */}
       {selectedCar && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 px-4">
           {/* Modal container */}
@@ -180,6 +163,20 @@ function Inventory() {
         </div>
       )}
 
+      {/* ✅ New Car Enquiry Section */}
+      <section className="py-16 bg-white text-center px-6 md:px-12">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+          Do you have a car you’d like us to import for you?
+        </h2>
+        <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          Fill out the form below and we will get in touch
+          with you to discuss your preferences.
+        </p>
+
+        <div className="max-w-2xl mx-auto">
+          <CarEnquiryForm /> 
+        </div>
+      </section>
       <Footer />
     </div>
   );
