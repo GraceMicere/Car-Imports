@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import MasterclassEnquiryForm from "../components/MasterclassEnquiryForm";
 
 const CarImportationMasterclass: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <Navbar />
@@ -21,12 +24,12 @@ const CarImportationMasterclass: React.FC = () => {
               fleet owners, or anyone starting out in Kenya’s taxi industry.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
-              <button className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl shadow transition-all">
+            <div className="mt-8 flex flex-wrap gap-4 justify-center items-center">
+              <button
+                onClick={() => setShowModal(true)} 
+                className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl shadow transition-all"
+              >
                 Enroll Now
-              </button>
-              <button className="px-6 py-3 border border-gray-400 hover:bg-gray-100 rounded-xl transition-all">
-                Download Outline
               </button>
             </div>
           </div>
@@ -149,7 +152,25 @@ const CarImportationMasterclass: React.FC = () => {
           </div>
         </div>
       </section>
+      {/* ✅ ENROLL MODAL */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 px-4 sm:px-6 overflow-auto">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl relative animate-fadeInScale">
+            {/* Close button */}
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl z-10"
+            >
+              &times;
+            </button>
 
+            {/* The Form */}
+            <div className="p-6 sm:p-10">
+              <MasterclassEnquiryForm />
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Car, CarImage, Enquiry, CarEnquiry
+from .models import Car, CarImage, Enquiry, CarEnquiry, MasterclassEnquiry
 
 
 class CarImageSerializer(serializers.ModelSerializer):
@@ -29,3 +29,8 @@ class CarEnquirySerializer(serializers.ModelSerializer):
     class Meta:
         model = CarEnquiry
         fields = '__all__'
+
+class MasterclassEnquirySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MasterclassEnquiry
+        fields = "__all__"

@@ -1,9 +1,9 @@
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Car, CarImage, Enquiry, CarEnquiry
+from .models import Car, CarImage, Enquiry, CarEnquiry, MasterclassEnquiry
 from .serializers import (
     CarSerializer, CarImageSerializer,
-    EnquirySerializer, CarEnquirySerializer
+    EnquirySerializer, CarEnquirySerializer, MasterclassEnquirySerializer
 )
 
 class CarViewSet(viewsets.ReadOnlyModelViewSet):
@@ -39,3 +39,7 @@ class EnquiryViewSet(viewsets.ModelViewSet):
 class CarEnquiryViewSet(viewsets.ModelViewSet):
     queryset = CarEnquiry.objects.all().order_by('-created_at')
     serializer_class = CarEnquirySerializer
+
+class MasterclassEnquiryCreateView(viewsets.ModelViewSet):
+    queryset = MasterclassEnquiry.objects.all()
+    serializer_class = MasterclassEnquirySerializer

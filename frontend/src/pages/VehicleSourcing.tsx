@@ -43,7 +43,7 @@ const VehicleSourcing = () => {
             We simplify the process of importing your dream car. Our team of mechanics and sourcing experts handle everything — from vehicle inspection to customs compliance — ensuring every import meets Kenya’s strict standards for safety, age, and specification.
             </p>
             <a
-              href="#contact"
+              href="#form"
               className="inline-block bg-white text-primary font-semibold px-6 py-3 rounded-full shadow hover:shadow-lg transition"
             >
               Get Free Quote
@@ -342,7 +342,7 @@ const VehicleSourcing = () => {
           </div>
         </section>
       </main>
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50" id="form">
         <div className="container mx-auto px-4 max-w-3xl text-center mb-10">
           <h2 className="text-3xl font-bold mb-4">
             Enquire About Vehicle Sourcing

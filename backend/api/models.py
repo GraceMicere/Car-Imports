@@ -97,3 +97,13 @@ class CarEnquiry(models.Model):
 
     def __str__(self):
         return f"Car Enquiry from {self.full_name} about {self.vehicle_of_interest}"
+
+class MasterclassEnquiry(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    message = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Masterclass Enquiry - {self.full_name}"

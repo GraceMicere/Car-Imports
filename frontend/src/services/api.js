@@ -64,3 +64,26 @@ export async function submitCarEnquiry(formData) {
     throw error;
   }
 }
+
+export const sendMasterclassEnquiry = async (formData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/masterclass-enquiry/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error:", errorData);
+      throw new Error("Failed to send enquiry");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error sending masterclass enquiry:", error);
+    throw error;
+  }
+};
