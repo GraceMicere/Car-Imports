@@ -25,21 +25,42 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { fetchCars } from "../services/api";
+import CarInventoryEnquiry from "../components/CarInventoryEnquiry";
+
+// ✅ Define minimal Car interface for TypeScript
+interface Car {
+  id: number;
+  name: string;
+  make: string;
+  model: string;
+  year: number;
+  price: number;
+  engine_type: string;
+  transmission: string;
+  mileage: number;
+  color: string;
+  grade?: string;
+  status?: string;
+  features?: string;
+  description?: string;
+  images?: string[];
+}
 
 const CarDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
-  const [carData, setCarData] = useState<any | null>(null);
+  const [carData, setCarData] = useState<Car | null>(null);
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
 
   useEffect(() => {
     async function loadCarDetails() {
       setLoading(true);
       try {
         const cars = await fetchCars();
-        const foundCar = cars.find((car) => String(car.id) === id);
+        const foundCar = cars.find((car: Car) => String(car.id) === id);
         if (!foundCar) return setCarData(null);
 
         setCarData(foundCar);
@@ -83,9 +104,11 @@ const CarDetail = () => {
     );
     window.open(`https://wa.me/254712345678?text=${message}`, "_blank");
   };
+
   const handleCall = () => {
     window.location.href = `tel:+254712345678`;
   };
+
   const handleEmail = () => {
     const subject = encodeURIComponent(`Inquiry about ${carData.name}`);
     const body = encodeURIComponent(
@@ -279,8 +302,26 @@ const CarDetail = () => {
 
               <Separator />
 
+              {/* Inventory Enquiry Modal */}
+              {selectedCar && (
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 px-4">
+                  <div className="bg-white rounded-2xl max-h-[90vh] overflow-y-auto w-full max-w-2xl p-6 relative shadow-2xl animate-fadeInScale flex flex-col justify-center items-center">
+                    <CarInventoryEnquiry
+                      car={selectedCar}
+                      onClose={() => setSelectedCar(null)}
+                    />
+                  </div>
+                </div>
+              )}
+
               {/* Contact Buttons */}
-              <div className="flex flex-wrap gap-4 mt-4">
+              <div className="flex flex-wrap gap-4 mt-4 justify-center">
+                <Button
+                  onClick={() => setSelectedCar(carData)}
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
+                  <Mail className="mr-2 h-5 w-5" /> Enquiry
+                </Button>
                 <Button
                   onClick={handleWhatsApp}
                   className="bg-green-600 hover:bg-green-700"
@@ -289,9 +330,6 @@ const CarDetail = () => {
                 </Button>
                 <Button onClick={handleCall} variant="outline">
                   <Phone className="mr-2 h-5 w-5" /> Call
-                </Button>
-                <Button onClick={handleEmail} variant="secondary">
-                  <Mail className="mr-2 h-5 w-5" /> Email
                 </Button>
               </div>
             </div>
