@@ -78,11 +78,22 @@ class Enquiry(BaseEnquiryFields):
         return f"Enquiry from {self.full_name} - {self.subject or 'No Subject'}"
 
 
-class CarEnquiry(BaseCarFields, BaseEnquiryFields):
-    """
-    This model combines both car details (make, model, year, etc.)
-    and customer enquiry details (name, email, message).
-    Used when a client submits a car import request.
-    """
+class CarEnquiry(models.Model):
+    BUDGET_CHOICES = [
+        ('below_1m', 'Below Ksh 1M'),
+        ('1m_2m', 'Ksh 1M - 2M'),
+        ('2m_3m', 'Ksh 2M - 3M'),
+        ('above_3m', 'Above Ksh 3M'),
+    ]
+
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    subject = models.CharField(max_length=200, default="Inquiry about car import")
+    vehicle_of_interest = models.CharField(max_length=100)
+    budget_range = models.CharField(max_length=20, choices=BUDGET_CHOICES, default="below_1m")
+    message = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return f"Car Enquiry from {self.full_name} about {self.make} {self.model} ({self.year})"
+        return f"Car Enquiry from {self.full_name} about {self.vehicle_of_interest}"

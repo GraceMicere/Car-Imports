@@ -1,41 +1,45 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { submitCarEnquiry } from "@/services/api"; // adjust import if needed
 
 const CarEnquiryForm: React.FC = () => {
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
     phone: "",
-    subject: "",
+    subject: "Inquiry about car import",
+    vehicle_of_interest: "",
+    budget_range: "",
     message: "",
-    name: "",
-    make: "",
-    model: "",
-    year: "",
-    grade: "",
-    engine_type: "",
-    mileage: "",
-    price: "",
-    color: "",
-    description: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Dropdown choices
-  const gradeOptions = ["6", "5", "4.5", "4", "3.5", "3", "R"];
-  const engineOptions = ["Petrol", "Diesel", "Electric", "Hybrid"];
+  const carOptions = [
+    "Toyota Axio",
+    "Toyota Vitz",
+    "Mazda Demio",
+    "Nissan Note",
+    "Honda Fit",
+    "Subaru Impreza",
+    "Other",
+  ];
 
-  // Handle input change
+  const budgetOptions = [
+    { value: "below_1m", label: "Below Ksh 1M" },
+    { value: "1m_2m", label: "Ksh 1M - 2M" },
+    { value: "2m_3m", label: "Ksh 2M - 3M" },
+    { value: "above_3m", label: "Above Ksh 3M" },
+  ];
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -43,42 +47,19 @@ const CarEnquiryForm: React.FC = () => {
     setSuccess(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/car-enquiries/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      await submitCarEnquiry(formData);
+      setSuccess("Your car enquiry has been submitted successfully!");
+      setFormData({
+        full_name: "",
+        email: "",
+        phone: "",
+        subject: "Inquiry about car import",
+        vehicle_of_interest: "",
+        budget_range: "",
+        message: "",
       });
-
-      if (response.ok) {
-        setSuccess("Your car enquiry has been submitted successfully!");
-        setFormData({
-          full_name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-          name: "",
-          make: "",
-          model: "",
-          year: "",
-          grade: "",
-          engine_type: "",
-          mileage: "",
-          price: "",
-          color: "",
-          description: "",
-        });
-      } else {
-        const errorData = await response.json();
-        setError(
-          errorData?.detail ||
-            "Failed to submit enquiry. Please check your details and try again."
-        );
-      }
     } catch (err) {
-      setError("Failed to connect to the server. Please try again later.");
+      setError("Failed to submit enquiry. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -86,15 +67,14 @@ const CarEnquiryForm: React.FC = () => {
 
   return (
     <section className="py-16 bg-gradient-to-r from-primary/5 to-indigo-50">
-      <div className="container mx-auto px-6 max-w-5xl">
+      <div className="container mx-auto px-6 max-w-3xl">
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="bg-white p-8 rounded-2xl shadow-lg grid md:grid-cols-2 gap-6"
+          className="bg-white p-8 rounded-2xl shadow-lg grid gap-6"
         >
-          {/* Personal Info */}
           <div>
             <label className="block text-sm font-medium mb-2">Full Name</label>
             <input
@@ -102,8 +82,8 @@ const CarEnquiryForm: React.FC = () => {
               name="full_name"
               value={formData.full_name}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
               required
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
@@ -114,170 +94,72 @@ const CarEnquiryForm: React.FC = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
               required
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Phone</label>
+            <label className="block text-sm font-medium mb-2">Phone Number</label>
             <input
               type="text"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
               required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Subject</label>
-            <input
-              type="text"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
-          {/* Car Info */}
-            <div>
-            <label className="block text-sm font-medium mb-2">Car Name</label>
-            <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="e.g. Toyota Axio Import Request"
-                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-                required
-            />
-            </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Car Make</label>
-            <input
-              type="text"
-              name="make"
-              value={formData.make}
-              onChange={handleChange}
-              placeholder="e.g. Toyota"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Model</label>
-            <input
-              type="text"
-              name="model"
-              value={formData.model}
-              onChange={handleChange}
-              placeholder="e.g. Axio"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Year</label>
-            <input
-              type="number"
-              name="year"
-              value={formData.year}
-              onChange={handleChange}
-              placeholder="e.g. 2018"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Grade</label>
+            <label className="block text-sm font-medium mb-2">Vehicle of Interest</label>
             <select
-              name="grade"
-              value={formData.grade}
+              name="vehicle_of_interest"
+              value={formData.vehicle_of_interest}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
               required
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
             >
-              <option value="">Select Grade</option>
-              {gradeOptions.map((g) => (
-                <option key={g} value={g}>
-                  {g}
+              <option value="">Select Vehicle</option>
+              {carOptions.map((car) => (
+                <option key={car} value={car}>
+                  {car}
                 </option>
               ))}
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Engine Type</label>
+            <label className="block text-sm font-medium mb-2">Budget Range</label>
             <select
-              name="engine_type"
-              value={formData.engine_type}
+              name="budget_range"
+              value={formData.budget_range}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
               required
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
             >
-              <option value="">Select Engine Type</option>
-              {engineOptions.map((e) => (
-                <option key={e} value={e.toLowerCase()}>
-                  {e}
+              <option value="">Select Budget Range</option>
+              {budgetOptions.map((b) => (
+                <option key={b.value} value={b.value}>
+                  {b.label}
                 </option>
               ))}
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Mileage (KM)</label>
-            <input
-              type="number"
-              name="mileage"
-              value={formData.mileage}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Budget (KSH)</label>
-            <input
-              type="number"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-              placeholder="e.g. 1500000"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Preferred Color</label>
-            <input
-              type="text"
-              name="color"
-              value={formData.color}
-              onChange={handleChange}
-              placeholder="e.g. White"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-            />
-          </div>
-
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium mb-2">Additional Notes</label>
+            <label className="block text-sm font-medium mb-2">Message</label>
             <textarea
-              name="description"
-              value={formData.description}
+              name="message"
+              value={formData.message}
               onChange={handleChange}
-              rows={3}
-              placeholder="Any other specifications or details..."
+              rows={4}
+              placeholder="Tell us more about your needs..."
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none"
-            ></textarea>
+            />
           </div>
 
-          <div className="md:col-span-2 flex justify-center mt-6">
+          <div className="flex justify-center mt-6">
             <button
               type="submit"
               disabled={loading}
@@ -287,12 +169,8 @@ const CarEnquiryForm: React.FC = () => {
             </button>
           </div>
 
-          {success && (
-            <p className="text-green-600 text-center md:col-span-2 mt-4">{success}</p>
-          )}
-          {error && (
-            <p className="text-red-600 text-center md:col-span-2 mt-4">{error}</p>
-          )}
+          {success && <p className="text-green-600 text-center mt-4">{success}</p>}
+          {error && <p className="text-red-600 text-center mt-4">{error}</p>}
         </motion.form>
       </div>
     </section>

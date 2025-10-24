@@ -85,14 +85,6 @@ const Navbar = () => {
                       </button>
                       <button
                         onClick={() =>
-                          handleScrollToSection("importation-masterclass")
-                        }
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      >
-                        Car Importation Masterclass
-                      </button>
-                      <button
-                        onClick={() =>
                           handleScrollToSection("taxi-business-advisory")
                         }
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"

@@ -23,6 +23,6 @@ class EnquiryAdmin(admin.ModelAdmin):
 
 @admin.register(CarEnquiry)
 class CarEnquiryAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'make', 'model', 'year', 'email', 'created_at')
-    search_fields = ('full_name', 'email', 'make', 'model')
-    list_filter = ('created_at', 'engine_type', 'year')
+    list_display = ('full_name', 'model', 'email', 'created_at')
+    search_fields = ('full_name', 'email', 'model')
+    list_filter = ('created_at',)

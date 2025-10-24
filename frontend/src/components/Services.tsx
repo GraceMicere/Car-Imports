@@ -11,13 +11,6 @@ const services = [
     path: "/services/vehicle-sourcing",
   },
   {
-    icon: GraduationCap,
-    title: "Car Importation Masterclass",
-    description:
-      "Learn the full car importation process from industry experts. Our masterclass covers auction bidding, documentation, shipping, and clearance — empowering you to confidently import your own car.",
-    path: "/services/car-importation-masterclass",
-  },
-  {
     icon: CarFront,
     title: "Kenya Taxi Business Advisory",
     description:
