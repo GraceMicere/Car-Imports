@@ -99,11 +99,11 @@ const CarDetail = () => {
     const message = encodeURIComponent(
       `Hi, I'm interested in the ${carData.name} listed on your website.`
     );
-    window.open(`https://wa.me/254712345678?text=${message}`, "_blank");
+    window.open(`https://wa.me/254757356989?text=${message}`, "_blank");
   };
 
   const handleCall = () => {
-    window.location.href = `tel:+254712345678`;
+    window.location.href = `tel:+254757356989`;
   };
 
   const handleEmail = () => {

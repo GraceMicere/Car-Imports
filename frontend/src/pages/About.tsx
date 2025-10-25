@@ -3,7 +3,8 @@ import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { fadeUp } from "../animations/fadeUp";
 import { motion } from "framer-motion";
-import { CheckCircle, Award, Users, Globe, Target, Heart } from "lucide-react";
+import { CheckCircle, Award, Users, Globe, Target, Heart, PlayCircle } from "lucide-react";
+
 
 const About = () => {
   return (
@@ -116,12 +117,26 @@ const About = () => {
             </div>
 
             {/* Right: Image */}
-            <div className="flex justify-center">
-              <img
-                src="https://images.unsplash.com/photo-1605559424843-9e4a9a3c1c8f?auto=format&fit=crop&w=900&q=80"
-                alt="About Xplore Imports"
-                className="rounded-2xl shadow-md object-cover w-full h-[400px] transition-all duration-300"
-              />
+            <div className="relative group rounded-2xl overflow-hidden shadow-md">
+              <iframe
+                src="https://www.youtube.com/embed/uqlcOHi4bAY"
+                title="About Xplore Imports"
+                className="w-full h-[400px] rounded-2xl"
+                allowFullScreen
+              ></iframe>
+
+              {/* Watch on YouTube Overlay */}
+              <a
+               href="https://youtu.be/uqlcOHi4bAY"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <div className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full text-lg font-semibold shadow-lg">
+                  <PlayCircle className="w-5 h-5" />
+                  <span>Watch on YouTube</span>
+                </div>
+              </a>
             </div>
           </div>
         </motion.section>

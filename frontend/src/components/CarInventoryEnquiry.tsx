@@ -6,14 +6,21 @@ interface CarInventoryEnquiryProps {
 }
 
 const CarInventoryEnquiry: React.FC<CarInventoryEnquiryProps> = ({ car, onClose }) => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  // ✅ Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // ✅ Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -24,8 +31,9 @@ const CarInventoryEnquiry: React.FC<CarInventoryEnquiryProps> = ({ car, onClose 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           car: car.id,
-          name: form.name,
+          full_name: form.name,
           email: form.email,
+          phone: form.phone,
           message: form.message,
         }),
       });
@@ -34,10 +42,12 @@ const CarInventoryEnquiry: React.FC<CarInventoryEnquiryProps> = ({ car, onClose 
         setSuccess(true);
         setTimeout(onClose, 2000);
       } else {
-        alert("❌ Failed to submit enquiry. Please try again.");
+        const errorData = await res.json();
+        console.error("Backend Validation Error:", errorData);
+        alert("Failed to submit enquiry. Please check your details and try again.");
       }
     } catch (err) {
-      console.error("Error:", err);
+      console.error("Network Error:", err);
       alert("Network error. Try again later.");
     }
 
@@ -77,35 +87,57 @@ const CarInventoryEnquiry: React.FC<CarInventoryEnquiryProps> = ({ car, onClose 
       </div>
 
       {success ? (
-        <p className="text-green-600 text-center">✅ Enquiry sent successfully!</p>
+        <p className="text-green-600 text-center">Enquiry sent successfully!</p>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-3">
+          {/* Full Name */}
           <input
             type="text"
             name="name"
-            placeholder="Your Name"
+            placeholder="Your Full Name"
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300"
           />
+
+          {/* Email */}
           <input
             type="email"
             name="email"
-            placeholder="Your Email"
+            placeholder="Your Email Address"
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300"
           />
+
+          {/* Phone */}
+          <input
+            type="text"
+            name="phone"
+            placeholder="Your Phone Number"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300"
+          />
+
+          {/* Message */}
           <textarea
             name="message"
-            placeholder="Message (optional)"
+            placeholder="Your Message (optional)"
             value={form.message}
             onChange={handleChange}
             rows={3}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300"
           />
+
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={submitting}

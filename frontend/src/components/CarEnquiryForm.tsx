@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { submitCarEnquiry } from "@/services/api"; 
+import { submitCarEnquiry } from "@/services/api";
 
 interface Car {
   id: number;
@@ -30,23 +30,13 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (car) {
-      setFormData((prev) => ({
-        ...prev,
-        vehicle_of_interest: car.name,
-      }));
-    }
-  }, [car]);
-
-  const carOptions = [
+  const carSuggestions = [
     "Toyota Axio",
     "Toyota Vitz",
     "Mazda Demio",
     "Nissan Note",
     "Honda Fit",
     "Subaru Impreza",
-    "Other",
   ];
 
   const budgetOptions = [
@@ -56,10 +46,22 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
     { value: "above_3m", label: "Above Ksh 3M" },
   ];
 
+  useEffect(() => {
+    if (car) {
+      setFormData((prev) => ({
+        ...prev,
+        vehicle_of_interest: car.name,
+      }));
+    }
+  }, [car]);
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,18 +72,18 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
 
     try {
       await submitCarEnquiry(formData);
-      setSuccess("✅ Your car enquiry has been submitted successfully!");
+      setSuccess("Your car enquiry has been submitted successfully!");
       setFormData({
         full_name: "",
         email: "",
         phone: "",
         subject: "Inquiry about car import",
-        vehicle_of_interest: car?.name || "",
+        vehicle_of_interest: "",
         budget_range: "",
         message: "",
       });
     } catch (err) {
-      setError("❌ Failed to submit enquiry. Please try again later.");
+      setError("Failed to submit enquiry. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -110,6 +112,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
             Enquire about {car ? car.name : "a Vehicle"}
           </h2>
 
+          {/* Full Name */}
           <div>
             <label className="block text-sm font-medium mb-2">Full Name</label>
             <input
@@ -118,10 +121,11 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               value={formData.full_name}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
+          {/* Email */}
           <div>
             <label className="block text-sm font-medium mb-2">Email</label>
             <input
@@ -130,48 +134,58 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
+          {/* Phone */}
           <div>
-            <label className="block text-sm font-medium mb-2">Phone Number</label>
+            <label className="block text-sm font-medium mb-2">
+              Phone Number
+            </label>
             <input
               type="text"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
+          {/* Vehicle of Interest (type or choose) */}
           <div>
-            <label className="block text-sm font-medium mb-2">Vehicle of Interest</label>
-            <select
+            <label className="block text-sm font-medium mb-2">
+              Vehicle of Interest
+            </label>
+            <input
+              type="text"
               name="vehicle_of_interest"
+              list="carSuggestions"
               value={formData.vehicle_of_interest}
               onChange={handleChange}
+              placeholder="Type or select vehicle..."
               required
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
-            >
-              <option value="">Select Vehicle</option>
-              {carOptions.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none"
+            />
+            <datalist id="carSuggestions">
+              {carSuggestions.map((carName) => (
+                <option key={carName} value={carName} />
               ))}
-            </select>
+            </datalist>
           </div>
 
+          {/* Budget Range */}
           <div>
-            <label className="block text-sm font-medium mb-2">Budget Range</label>
+            <label className="block text-sm font-medium mb-2">
+              Budget Range
+            </label>
             <select
               name="budget_range"
               value={formData.budget_range}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none"
             >
               <option value="">Select Budget Range</option>
               {budgetOptions.map((b) => (
@@ -182,6 +196,7 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
             </select>
           </div>
 
+          {/* Message */}
           <div>
             <label className="block text-sm font-medium mb-2">Message</label>
             <textarea
@@ -190,10 +205,11 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
               onChange={handleChange}
               rows={4}
               placeholder="Tell us more about your needs..."
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:ring-2 focus:ring-primary outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none"
             />
           </div>
 
+          {/* Submit */}
           <div className="flex justify-center mt-6">
             <button
               type="submit"
@@ -204,7 +220,9 @@ const CarEnquiryForm: React.FC<CarEnquiryFormProps> = ({ car, onClose }) => {
             </button>
           </div>
 
-          {success && <p className="text-green-600 text-center mt-4">{success}</p>}
+          {success && (
+            <p className="text-green-600 text-center mt-4">{success}</p>
+          )}
           {error && <p className="text-red-600 text-center mt-4">{error}</p>}
         </motion.form>
       </div>
