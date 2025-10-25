@@ -91,20 +91,38 @@ const Footer = () => {
 
         {/* Centered Social Icons */}
         <div className="mt-10 flex justify-center space-x-6">
-          {[Facebook, Instagram, Youtube, Music, MessageCircle].map((Icon, idx) => {
-            const colors = ["#1877F2", "#E1306C", "#FF0000", "#000", "#25D366"];
-            return (
-              <a
-                key={idx}
-                href="https://wa.me/254757356989"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform transform hover:scale-110"
-              >
-                <Icon className={`h-6 w-6`} style={{ color: colors[idx] }} />
-              </a>
-            );
-          })}
+          {[
+            {
+              Icon: Facebook,
+              color: "#1877F2",
+              link: "https://www.youtube.com/Explore254Discover",
+            },
+            {
+              Icon: Youtube,
+              color: "#FF0000",
+              link: "https://www.youtube.com/@Explore254Discover",
+            },
+            {
+              Icon: Music,
+              color: "#000",
+              link: "https://www.tiktok.com/@explore_254k3?_t=ZM-90qsd8mGmTo&_r=1",
+            },
+            {
+              Icon: MessageCircle,
+              color: "#25D366",
+              link: "https://wa.me/254757356989", 
+            },
+          ].map(({ Icon, color, link }, idx) => (
+            <a
+              key={idx}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform transform hover:scale-110"
+            >
+              <Icon className="h-6 w-6" style={{ color }} />
+            </a>
+          ))}
         </div>
 
         {/* Footer Bottom */}

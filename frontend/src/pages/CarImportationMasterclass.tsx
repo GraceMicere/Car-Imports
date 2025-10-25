@@ -6,6 +6,48 @@ import MasterclassEnquiryForm from "../components/MasterclassEnquiryForm";
 const CarImportationMasterclass: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
+  // ✅ Helper: Extract YouTube video ID
+  const getVideoId = (url: string) => {
+    const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return match ? match[1] : null;
+  };
+
+  // ✅ Reusable YouTube preview component with red YouTube button
+  const YouTubePreview = ({ url }: { url: string }) => {
+    const videoId = getVideoId(url);
+    const thumbnail = videoId
+      ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+      : "/images/video-placeholder.jpg";
+
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block relative group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+      >
+        <img
+          src={thumbnail}
+          alt="Watch on YouTube"
+          className="w-full h-[300px] object-cover group-hover:opacity-90 transition-opacity"
+        />
+
+        {/* YouTube red overlay button */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-medium text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md group-hover:bg-red-700 transition">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8.051 1.999h-.002C3.246 1.999 0 3.692 0 8.002c0 4.311 3.246 6.004 8.049 6.004h.002c4.804 0 8.05-1.693 8.05-6.004 0-4.31-3.246-6.003-8.05-6.003zM6.271 11.1V4.9l4.833 3.1-4.833 3.1z" />
+          </svg>
+          <span>Watch on YouTube</span>
+        </div>
+      </a>
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -35,53 +77,42 @@ const CarImportationMasterclass: React.FC = () => {
           </div>
 
           <div className="flex-1">
-            <a
-              href="https://youtu.be/uqlcOHi4bAY?si=6pKhB3WyBRsLMloU"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-            >
-              <img
-                src="/images/taxi-hero.jpg"
-                alt="Taxi Business Masterclass"
-                className="rounded-3xl shadow-lg object-cover w-full h-[350px] group-hover:opacity-90 transition"
-              />
-            </a>
+            <YouTubePreview url="https://youtu.be/uqlcOHi4bAY?si=6pKhB3WyBRsLMloU" />
           </div>
         </div>
       </section>
 
       {/* MAIN CONTENT */}
       <section className="max-w-6xl mx-auto px-6 py-20 space-y-20">
-
         {/* PILLAR 1 */}
         <div className="flex flex-col md:flex-row items-center gap-10">
           <div className="md:w-1/2">
-            <a
-              href="https://youtu.be/_gQ4Wrq7OMU?si=8fm0ssFyaeiotyYp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-            >
-              <img
-                src="/images/taxi-driver-training.jpg"
-                alt="Taxi Training"
-                className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px] group-hover:opacity-90 transition"
-              />
-            </a>
+            <YouTubePreview url="https://youtu.be/_gQ4Wrq7OMU?si=8fm0ssFyaeiotyYp" />
           </div>
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">1. Taxi Business Masterclass</h2>
+            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">
+              1. Taxi Business Masterclass
+            </h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               A hands-on, revenue-focused module that gives you everything you need to run a
               profitable taxi business — whether you want to drive part-time or build a full-time fleet.
             </p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-              <li><strong>Training:</strong> Platform setup, customer handling, and safety basics.</li>
-              <li><strong>Cost & revenue analysis:</strong> Templates to calculate expenses and profits.</li>
-              <li><strong>Pros & cons:</strong> Honest breakdown of platform dynamics and challenges.</li>
-              <li><strong>Best cars:</strong> Reliable, fuel-efficient models for Kenya’s market.</li>
-              <li><strong>Part-time vs full-time:</strong> Which approach suits your goals best?</li>
+              <li>
+                <strong>Training:</strong> Platform setup, customer handling, and safety basics.
+              </li>
+              <li>
+                <strong>Cost & revenue analysis:</strong> Templates to calculate expenses and profits.
+              </li>
+              <li>
+                <strong>Pros & cons:</strong> Honest breakdown of platform dynamics and challenges.
+              </li>
+              <li>
+                <strong>Best cars:</strong> Reliable, fuel-efficient models for Kenya’s market.
+              </li>
+              <li>
+                <strong>Part-time vs full-time:</strong> Which approach suits your goals best?
+              </li>
             </ul>
           </div>
         </div>
@@ -89,125 +120,97 @@ const CarImportationMasterclass: React.FC = () => {
         {/* PILLAR 2 */}
         <div className="flex flex-col-reverse md:flex-row items-center gap-10">
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">2. Driver Management</h2>
+            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">
+              2. Driver Management
+            </h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               Build a dependable and professional team. Learn to recruit, train, monitor and motivate drivers
               to maintain consistency and reliability in your operations.
             </p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-              <li><strong>Recruitment:</strong> Find and onboard reliable, well-vetted drivers.</li>
-              <li><strong>Monitoring & performance:</strong> Tools to track daily performance and ratings.</li>
-              <li><strong>Payment & incentives:</strong> Transparent and motivating compensation systems.</li>
-              <li><strong>Retention:</strong> Keep top drivers happy through growth opportunities.</li>
+              <li>
+                <strong>Recruitment:</strong> Find and onboard reliable, well-vetted drivers.
+              </li>
+              <li>
+                <strong>Monitoring & performance:</strong> Tools to track daily performance and ratings.
+              </li>
+              <li>
+                <strong>Payment & incentives:</strong> Transparent and motivating compensation systems.
+              </li>
+              <li>
+                <strong>Retention:</strong> Keep top drivers happy through growth opportunities.
+              </li>
             </ul>
           </div>
 
           <div className="md:w-1/2">
-            <a
-              href="https://youtu.be/s_OZrcpYXq8?si=hCCkBNLtlBc8PIIj"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-            >
-              <img
-                src="/images/driver-management.jpg"
-                alt="Driver Management"
-                className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px] group-hover:opacity-90 transition"
-              />
-            </a>
+            <YouTubePreview url="https://youtu.be/s_OZrcpYXq8?si=hCCkBNLtlBc8PIIj" />
           </div>
         </div>
 
         {/* PILLAR 3 */}
         <div className="flex flex-col md:flex-row items-center gap-10">
           <div className="md:w-1/2">
-            <a
-              href="https://youtu.be/EwYtPwQfyI8?si=Sdj7-aiozpHqtM7F"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-            >
-              <img
-                src="/images/car-documents.jpg"
-                alt="Car Documents and Compliance"
-                className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px] group-hover:opacity-90 transition"
-              />
-            </a>
+            <YouTubePreview url="https://youtu.be/EwYtPwQfyI8?si=Sdj7-aiozpHqtM7F" />
           </div>
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">3. Documents & Compliance</h2>
+            <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">
+              3. Documents & Compliance
+            </h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               Navigate Kenya’s regulatory landscape confidently. Learn which documents you need for
               both car and driver to stay compliant and avoid penalties.
             </p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-              <li><strong>Car documents:</strong> Logbook, customs clearance, inspection reports.</li>
-              <li><strong>Driver documents:</strong> Valid PSV licenses, contracts, and IDs.</li>
-              <li><strong>Insurance & licensing:</strong> Best policies and renewal procedures.</li>
+              <li>
+                <strong>Car documents:</strong> Logbook, customs clearance, inspection reports.
+              </li>
+              <li>
+                <strong>Driver documents:</strong> Valid PSV licenses, contracts, and IDs.
+              </li>
+              <li>
+                <strong>Insurance & licensing:</strong> Best policies and renewal procedures.
+              </li>
             </ul>
           </div>
         </div>
 
         {/* MAINTENANCE */}
         <div className="p-10 rounded-3xl shadow-md bg-green-100 dark:bg-gray-800 dark:shadow-gray-700 transition-colors duration-300">
-          <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Car Maintenance & Parts</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+            Car Maintenance & Parts
+          </h3>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
-            Preventive maintenance keeps your cars profitable. Learn service intervals, sourcing quality
-            parts, and building relationships with reliable vendors.
+            Proper vehicle maintenance is the backbone of a successful taxi or car hire business.
+            In this section, we help you understand how to minimize downtime, reduce repair costs,
+            and keep your vehicles running efficiently for longer.
           </p>
+
           <div className="grid gap-6 md:grid-cols-3">
-            <div>
-              <a
-                href="https://www.youtube.com/watch?v=VIDEO_ID_5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group"
-              >
-                <img
-                  src="/images/car-service.jpg"
-                  alt="Service"
-                  className="rounded-lg mb-3 w-full h-[200px] object-cover group-hover:opacity-90 transition"
-                />
-              </a>
-              <h4 className="font-semibold text-gray-900 dark:text-gray-100">Service</h4>
+            <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm dark:shadow-gray-700">
+              <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Routine Service</h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                Track maintenance routines — oil changes, brakes, suspension — to extend vehicle lifespan.
+                Learn how to create and follow a consistent maintenance schedule, including oil changes,
+                filter replacements, brake checks, and tire rotations — ensuring your cars remain roadworthy
+                and fuel-efficient.
               </p>
             </div>
-            <div>
-              <a
-                href="https://www.youtube.com/watch?v=VIDEO_ID_6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group"
-              >
-                <img
-                  src="/images/car-parts.jpg"
-                  alt="Parts"
-                  className="rounded-lg mb-3 w-full h-[200px] object-cover group-hover:opacity-90 transition"
-                />
-              </a>
-              <h4 className="font-semibold text-gray-900 dark:text-gray-100">Parts</h4>
+
+            <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm dark:shadow-gray-700">
+              <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Spare Parts Management</h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                Source quality spare parts affordably, manage inventory, and reduce downtime.
+                Discover how to source affordable and genuine spare parts locally and abroad.
+                We cover vendor selection, comparing aftermarket vs original parts, and how to track
+                parts expenses to stay within budget.
               </p>
             </div>
-            <div>
-              <a
-                href="https://www.youtube.com/watch?v=VIDEO_ID_7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group"
-              >
-                <img
-                  src="/images/mechanic.jpg"
-                  alt="Mechanics"
-                  className="rounded-lg mb-3 w-full h-[200px] object-cover group-hover:opacity-90 transition"
-                />
-              </a>
-              <h4 className="font-semibold text-gray-900 dark:text-gray-100">Repairs & Vendors</h4>
+
+            <div className="bg-white dark:bg-gray-900 p-5 rounded-xl shadow-sm dark:shadow-gray-700">
+              <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Mechanics & Vendors</h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                Build a trusted network of mechanics and workshops for quick, quality repairs.
+                Building relationships with skilled mechanics and trusted suppliers is key to smooth operations.
+                Learn how to negotiate fair rates, set service standards, and create long-term partnerships
+                that keep your business sustainable.
               </p>
             </div>
           </div>
@@ -233,6 +236,7 @@ const CarImportationMasterclass: React.FC = () => {
           </div>
         </div>
       )}
+
       <Footer />
     </>
   );
