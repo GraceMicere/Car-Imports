@@ -35,21 +35,21 @@ const MasterclassEnquiryForm = () => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-6 max-w-lg mx-auto mt-10">
-      <h2 className="text-xl font-bold mb-4 text-center">
+    <div className="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-6 max-w-lg mx-auto mt-10 transition-colors duration-300">
+      <h2 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100">
         Do you want to enroll in our Masterclass?
       </h2>
-      <p className="text-gray-600 text-center mb-6">
+      <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
         Fill out the form below to send an enrollment request.
       </p>
 
       {success && (
-        <div className="bg-green-100 text-green-700 p-3 rounded mb-4 text-center">
+        <div className="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 p-3 rounded mb-4 text-center">
           ✅ Request sent successfully!
         </div>
       )}
       {error && (
-        <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center">
+        <div className="bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 p-3 rounded mb-4 text-center">
           ⚠️ {error}
         </div>
       )}
@@ -61,7 +61,7 @@ const MasterclassEnquiryForm = () => {
           placeholder="Full Name"
           value={formData.full_name}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
           required
         />
         <input
@@ -70,7 +70,7 @@ const MasterclassEnquiryForm = () => {
           placeholder="Email Address"
           value={formData.email}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
           required
         />
         <input
@@ -79,7 +79,7 @@ const MasterclassEnquiryForm = () => {
           placeholder="Phone Number"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
           required
         />
         <textarea
@@ -87,13 +87,13 @@ const MasterclassEnquiryForm = () => {
           placeholder="Optional Message"
           value={formData.message}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"
           rows={3}
         />
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
+          className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white py-3 rounded-lg transition-colors duration-300"
         >
           {loading ? "Sending..." : "Send Enroll Request"}
         </button>
