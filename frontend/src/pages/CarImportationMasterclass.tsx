@@ -26,7 +26,7 @@ const CarImportationMasterclass: React.FC = () => {
 
             <div className="mt-8 flex flex-wrap gap-4 justify-center items-center">
               <button
-                onClick={() => setShowModal(true)} 
+                onClick={() => setShowModal(true)}
                 className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl shadow transition-all"
               >
                 Enroll Now
@@ -35,11 +35,18 @@ const CarImportationMasterclass: React.FC = () => {
           </div>
 
           <div className="flex-1">
-            <img
-              src="/images/taxi-hero.jpg"
-              alt="Taxi Business Masterclass"
-              className="rounded-3xl shadow-lg object-cover w-full h-[350px]"
-            />
+            <a
+              href="https://youtu.be/uqlcOHi4bAY?si=6pKhB3WyBRsLMloU"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <img
+                src="/images/taxi-hero.jpg"
+                alt="Taxi Business Masterclass"
+                className="rounded-3xl shadow-lg object-cover w-full h-[350px] group-hover:opacity-90 transition"
+              />
+            </a>
           </div>
         </div>
       </section>
@@ -50,11 +57,18 @@ const CarImportationMasterclass: React.FC = () => {
         {/* PILLAR 1 */}
         <div className="flex flex-col md:flex-row items-center gap-10">
           <div className="md:w-1/2">
-            <img
-              src="/images/taxi-driver-training.jpg"
-              alt="Taxi Training"
-              className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px]"
-            />
+            <a
+              href="https://youtu.be/_gQ4Wrq7OMU?si=8fm0ssFyaeiotyYp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <img
+                src="/images/taxi-driver-training.jpg"
+                alt="Taxi Training"
+                className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px] group-hover:opacity-90 transition"
+              />
+            </a>
           </div>
           <div className="md:w-1/2">
             <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">1. Taxi Business Masterclass</h2>
@@ -89,22 +103,36 @@ const CarImportationMasterclass: React.FC = () => {
           </div>
 
           <div className="md:w-1/2">
-            <img
-              src="/images/driver-management.jpg"
-              alt="Driver Management"
-              className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px]"
-            />
+            <a
+              href="https://youtu.be/s_OZrcpYXq8?si=hCCkBNLtlBc8PIIj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <img
+                src="/images/driver-management.jpg"
+                alt="Driver Management"
+                className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px] group-hover:opacity-90 transition"
+              />
+            </a>
           </div>
         </div>
 
         {/* PILLAR 3 */}
         <div className="flex flex-col md:flex-row items-center gap-10">
           <div className="md:w-1/2">
-            <img
-              src="/images/car-documents.jpg"
-              alt="Car Documents and Compliance"
-              className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px]"
-            />
+            <a
+              href="https://youtu.be/EwYtPwQfyI8?si=Sdj7-aiozpHqtM7F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <img
+                src="/images/car-documents.jpg"
+                alt="Car Documents and Compliance"
+                className="rounded-2xl shadow-md dark:shadow-gray-700 object-cover w-full h-[300px] group-hover:opacity-90 transition"
+              />
+            </a>
           </div>
           <div className="md:w-1/2">
             <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">3. Documents & Compliance</h2>
@@ -129,21 +157,54 @@ const CarImportationMasterclass: React.FC = () => {
           </p>
           <div className="grid gap-6 md:grid-cols-3">
             <div>
-              <img src="/images/car-service.jpg" alt="Service" className="rounded-lg mb-3 w-full h-[200px] object-cover" />
+              <a
+                href="https://www.youtube.com/watch?v=VIDEO_ID_5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <img
+                  src="/images/car-service.jpg"
+                  alt="Service"
+                  className="rounded-lg mb-3 w-full h-[200px] object-cover group-hover:opacity-90 transition"
+                />
+              </a>
               <h4 className="font-semibold text-gray-900 dark:text-gray-100">Service</h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Track maintenance routines — oil changes, brakes, suspension — to extend vehicle lifespan.
               </p>
             </div>
             <div>
-              <img src="/images/car-parts.jpg" alt="Parts" className="rounded-lg mb-3 w-full h-[200px] object-cover" />
+              <a
+                href="https://www.youtube.com/watch?v=VIDEO_ID_6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <img
+                  src="/images/car-parts.jpg"
+                  alt="Parts"
+                  className="rounded-lg mb-3 w-full h-[200px] object-cover group-hover:opacity-90 transition"
+                />
+              </a>
               <h4 className="font-semibold text-gray-900 dark:text-gray-100">Parts</h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Source quality spare parts affordably, manage inventory, and reduce downtime.
               </p>
             </div>
             <div>
-              <img src="/images/mechanic.jpg" alt="Mechanics" className="rounded-lg mb-3 w-full h-[200px] object-cover" />
+              <a
+                href="https://www.youtube.com/watch?v=VIDEO_ID_7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <img
+                  src="/images/mechanic.jpg"
+                  alt="Mechanics"
+                  className="rounded-lg mb-3 w-full h-[200px] object-cover group-hover:opacity-90 transition"
+                />
+              </a>
               <h4 className="font-semibold text-gray-900 dark:text-gray-100">Repairs & Vendors</h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Build a trusted network of mechanics and workshops for quick, quality repairs.
