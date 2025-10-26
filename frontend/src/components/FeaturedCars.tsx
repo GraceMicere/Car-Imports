@@ -146,7 +146,7 @@ const FeaturedCars = () => {
                     className="w-full dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition-colors"
                     asChild
                   >
-                    <Link to={`/inventory/${car.id}`}>
+                    <Link to={`/car-listing/${car.id}`}>
                       View Details
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -165,8 +165,8 @@ const FeaturedCars = () => {
             asChild
             className="dark:bg-blue-600 dark:hover:bg-blue-500 dark:text-white transition-colors"
           >
-            <Link to="/inventory">
-              View All Inventory
+            <Link to="/car-listing">
+              Checkout Our Car Listing
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

@@ -119,7 +119,7 @@ function Inventory() {
                   {/* Buttons */}
                   <div className="flex justify-between mt-4">
                     <Link
-                      to={`/inventory/${car.id}`}
+                      to={`/car-listing/${car.id}`}
                       className="bg-primary text-white px-4 py-2 rounded-lg text-sm hover:bg-primary/80 transition"
                     >
                       View Details
