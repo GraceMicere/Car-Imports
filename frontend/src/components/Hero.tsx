@@ -57,7 +57,7 @@ const Hero = () => {
                 </Link>
               </Button>
               <Button variant="green" size="lg" asChild>
-                <Link to="/inventory">View Our Inventory</Link>
+                <Link to="/car-listing">Checkout Out Car Listing</Link>
               </Button>
             </div>
 

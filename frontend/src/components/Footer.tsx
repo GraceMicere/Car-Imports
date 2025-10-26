@@ -4,7 +4,6 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Instagram,
   Youtube,
   MessageCircle,
   Music,
@@ -37,7 +36,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              {["Home", "Inventory", "Services", "About Us", "Contact"].map((link, idx) => (
+              {["Home", "Car Listing", "About", "Contact"].map((link, idx) => (
                 <li key={idx}>
                   <Link
                     to={link === "Home" ? "/" : `/${link.toLowerCase().replace(/\s/g, '-')}`}
