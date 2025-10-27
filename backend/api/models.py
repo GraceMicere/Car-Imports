@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 class BaseCarFields(models.Model):
     ENGINE_CHOICES = [
@@ -70,7 +71,7 @@ class Car(BaseCarFields):
 
 class CarImage(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="images")
-    image = models.ImageField(upload_to='car_images/')
+    image = CloudinaryField('image')
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

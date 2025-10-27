@@ -13,7 +13,9 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
-# Application definition
+ALLOWED_HOSTS = [
+    '127.0.0.1'
+]
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -33,8 +35,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,9 +133,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.xplorecars.cc",
     "https://car-imports-production.up.railway.app",
 ]
-
-MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
