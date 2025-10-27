@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
+
+
 interface CarInventoryEnquiryProps {
   car: any;
   onClose: () => void;
@@ -26,7 +29,7 @@ const CarInventoryEnquiry: React.FC<CarInventoryEnquiryProps> = ({ car, onClose 
     setSubmitting(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/enquiries/", {
+      const res = await fetch(`${API_BASE_URL}/enquiries/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

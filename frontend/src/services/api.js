@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
+
 
 
 export const fetchCars = async () => {
@@ -13,7 +14,7 @@ export const fetchCars = async () => {
     const normalizedData = (Array.isArray(data) ? data : data.results || []).map(car => ({
       ...car,
       images: (car.images || []).map(img =>
-        img.image.startsWith("http") ? img.image : `http://127.0.0.1:8000${img.image}`
+        img.image.startsWith("http") ? img.image : `${API_BASE_URL.replace('/api', '')}${img.image}`
       )
     }));
 

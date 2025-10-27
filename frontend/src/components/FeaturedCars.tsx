@@ -5,6 +5,8 @@ import { Card } from "./ui/card";
 import { ArrowRight, Fuel, Gauge, Calendar } from "lucide-react";
 import { fetchCars } from "../services/api";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
+
 
 interface Car {
   id: number;
@@ -52,7 +54,7 @@ const FeaturedCars = () => {
 
     return imagePath.startsWith("http")
       ? imagePath
-      : `http://127.0.0.1:8000${imagePath}`;
+      : `${API_BASE_URL.replace('/api', '')}${imagePath}`;
   };
 
   return (

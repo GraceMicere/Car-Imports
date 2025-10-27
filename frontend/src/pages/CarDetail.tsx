@@ -27,6 +27,9 @@ import { useToast } from "@/hooks/use-toast";
 import { fetchCars } from "../services/api";
 import CarInventoryEnquiry from "../components/CarInventoryEnquiry";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
+
+
 interface Car {
   id: number;
   name: string;
@@ -65,7 +68,7 @@ const CarDetail = () => {
         setCarData(foundCar);
 
         const fullImages = (foundCar.images || []).map((img: string) =>
-          img.startsWith("http") ? img : `http://127.0.0.1:8000${img}`
+          img.startsWith("http") ? img : `${API_BASE_URL.replace('/api', '')}${img}`
         );
         setImages(fullImages);
       } catch (error) {
