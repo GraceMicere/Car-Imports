@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
-
+ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -112,15 +112,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if DEBUG:
-    CORS_ALLOWED_ORIGINS.append("http://localhost:5173")
-    CSRF_TRUSTED_ORIGINS.append("http://localhost:5173")
 
 CORS_ALLOWED_ORIGINS = [
     "https://xplorecars.cc",
@@ -166,7 +164,9 @@ JAZZMIN_SETTINGS = {
     "site_header": "Xplore Admin",
     "site_brand": "Xplore Imports",
     "welcome_sign": "Welcome to Xplore Car Imports Dashboard",
-    "site_logo_classes": "rounded-full",
+    "site_logo": "images/logo.jpg",
+    "custom_css": "css/admin-custom.css",
+    "site_logo_classes": "brand-image",
     "copyright": "Xplore Car Imports © 2025",
 
     # Top menu (simple version)
