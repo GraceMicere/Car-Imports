@@ -78,10 +78,10 @@ const Footer = () => {
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <a
-                  href="mailto:info@xplorecarimports.com"
+                  href="mailto:localsays@gmail.comm"
                   className="opacity-80 hover:opacity-100 hover:text-primary dark:hover:text-primary transition-all"
                 >
-                  info@xplorecarimports.com
+                  localsays@gmail.com
                 </a>
               </li>
             </ul>

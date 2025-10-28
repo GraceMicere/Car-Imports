@@ -62,10 +62,10 @@ const Contact = () => {
                   <h3 className="font-bold text-lg mb-2">Email</h3>
                   <p className="text-muted-foreground">
                     <a
-                      href="mailto:info@kenyaimports.com"
+                      href="mailto:localsays@gmail.com"
                       className="hover:text-primary transition-colors"
                     >
-                      info@xplorecarimports.com
+                      localsays@gmail.com
                     </a>
                   </p>
                 </Card>

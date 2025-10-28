@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Car, CarImage, Enquiry, CarEnquiry
+from .models import Car, CarImage, Enquiry, CarEnquiry, MasterclassEnquiry
 
 class CarImageInline(admin.TabularInline):
     model = CarImage
@@ -25,4 +25,10 @@ class EnquiryAdmin(admin.ModelAdmin):
 class CarEnquiryAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'model', 'email', 'created_at')
     search_fields = ('full_name', 'email', 'model')
+    list_filter = ('created_at',)
+
+@admin.register(MasterclassEnquiry)
+class MasterclassEnquiryAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'phone', 'message', 'created_at')
+    search_fields = ('full_name', 'email', 'phone')
     list_filter = ('created_at',)
