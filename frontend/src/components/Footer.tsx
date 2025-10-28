@@ -5,6 +5,7 @@ import {
   MapPin,
   Facebook,
   Youtube,
+  Instagram,
   MessageCircle,
   Music,
 } from "lucide-react";
@@ -94,7 +95,7 @@ const Footer = () => {
             {
               Icon: Facebook,
               color: "#1877F2",
-              link: "https://www.youtube.com/Explore254Discover",
+              link: "https://www.facebook.com/XploreImports",
             },
             {
               Icon: Youtube,
@@ -105,6 +106,11 @@ const Footer = () => {
               Icon: Music,
               color: "#000",
               link: "https://www.tiktok.com/@explore_254k3?_t=ZM-90qsd8mGmTo&_r=1",
+            },
+            {
+              Icon: Instagram,
+              color: "#E1306C",
+              link: "https://www.instagram.com/xplorecar_imports/",
             },
             {
               Icon: MessageCircle,

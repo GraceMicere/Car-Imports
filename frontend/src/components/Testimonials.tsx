@@ -17,42 +17,11 @@ const testimonials = [
       "I have always been wanting to import my own car from Japan. After I consulted with Xplore Car Imports, they made my dream come true. I finally have my own Mazda CX5. I acknowledge their hard work and professionalism to ensure we – the customers – are satisfied.",
   },
   {
-    name: "Samuel Ochieng",
-    role: "Small Business Owner",
-    rating: 5,
-    message:
-      "I was skeptical at first, but Xplore Car Imports proved reliable. Excellent communication, smooth process, and my Nissan X-Trail feels brand new. Highly recommended.",
-  },
-  {
     name: "John Kamau",
     role: "Uber Driver",
     rating: 5,
     message:
       "Hizi services za Xplore Car Imports ni legit. Gari yangu ya Mazda inafanya kazi kwa vibe kabisa, na communication yao ni crisp. Big up!",
-  },
-  {
-    name: "Peter Otieno",
-    role: "Taxi Owner",
-    rating: 5,
-    message: "Affordable cars for my business. Excellent customer support.",
-  },
-  {
-    name: "Mercy Kamau",
-    role: "First-time Buyer",
-    rating: 5,
-    message: "Superb service! Transparent pricing and fast delivery.",
-  },
-  {
-    name: "David Kariuki",
-    role: "Rideshare Driver",
-    rating: 5,
-    message: "Smooth process and reliable vehicles for my daily work.",
-  },
-  {
-    name: "Joyce Achieng",
-    role: "Car Collector",
-    rating: 5,
-    message: "Highly recommend for anyone looking for imported vehicles.",
   },
 ];
 
@@ -65,7 +34,7 @@ const Testimonials = () => {
       </h2>
 
       {/* Testimonials List */}
-      <div className="flex gap-8 overflow-x-auto px-4 scrollbar-hide">
+      <div className="flex gap-8 overflow-x-auto px-4 scrollbar-hide items-center justify-center">
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
