@@ -46,7 +46,7 @@ ${urls.join("\n")}
 </urlset>`;
 
     // Save the sitemap into your public folder
-    fs.writeFileSync("./public/sitemap.xml", sitemap);
+    fs.writeFileSync("./dist/sitemap.xml", sitemap);
     console.log("✅ Sitemap generated successfully!");
   } catch (error) {
     console.error("❌ Error generating sitemap:", error.message);
