@@ -93,9 +93,8 @@ const About = () => {
                   Our mission is to make the car importation journey{" "}
                   <span className="font-semibold text-green-700 dark:text-green-400">easy, transparent, and stress-free.</span>{" "}
                   We connect clients to{" "}
-                  <span className="font-semibold">quality and affordable vehicles</span> from trusted
-                  markets such as{" "}
-                  <span className="font-semibold text-green-700 dark:text-green-400">Japan, the UK, and Dubai</span>,
+                  <span className="font-semibold">quality and affordable vehicles</span> from{" "}
+                  <span className="font-semibold text-green-700 dark:text-green-400">Japan</span>,
                   handling everything from sourcing, inspection, shipping, and customs clearance to{" "}
                   <span className="font-semibold">final delivery straight to your door.</span>
                 </p>
@@ -162,7 +161,7 @@ const About = () => {
               {[
                 { icon: CheckCircle, title: "Integrity & Transparency", description: "Honest communication and clear pricing with no hidden fees." },
                 { icon: Heart, title: "Customer Care", description: "Every client is treated as a partner — your satisfaction is our success." },
-                { icon: Globe, title: "Global Reach", description: "Strong partnerships in Japan, UK, and Dubai ensure premium selections." },
+                { icon: Globe, title: "Global Reach", description: "Strong partnerships in Japan ensure premium selections." },
                 { icon: Target, title: "Reliability", description: "We deliver what we promise — on time and with care." },
                 { icon: Users, title: "Community Focus", description: "We grow by empowering Kenyans to make informed car investment decisions." },
                 { icon: Award, title: "Excellence", description: "Striving for quality service in every import, every client, every time." },

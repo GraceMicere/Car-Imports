@@ -131,7 +131,7 @@ const CarDetail = () => {
         <div className="bg-gray-100 dark:bg-gray-800 py-4 transition-colors">
           <div className="container mx-auto px-4">
             <Link
-              to="/inventory"
+              to="/car-listing"
               className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />

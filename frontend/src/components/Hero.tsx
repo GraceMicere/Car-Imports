@@ -39,7 +39,7 @@ const Hero = () => {
                 or expanding your 
                 <span className="text-primary font-semibold"> taxi business</span>, we help you source 
                 <span className="text-primary font-semibold"> quality, affordable vehicles </span> 
-                from <span className="text-primary font-semibold">Japan, the UK, and Dubai</span> and handle everything 
+                from <span className="text-primary font-semibold">Japan</span> and handle everything 
                 from <span className="text-primary font-semibold">shipping</span> to 
                 <span className="text-primary font-semibold"> doorstep delivery</span>. 
                 We also teach our clients the ins and outs of importation through our 
