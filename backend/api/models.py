@@ -1,5 +1,8 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from markdownx.models import MarkdownxField
+from django.utils.text import slugify
+from urllib.parse import urlparse, parse_qs
 
 class BaseCarFields(models.Model):
     ENGINE_CHOICES = [
@@ -27,7 +30,7 @@ class BaseCarFields(models.Model):
     mileage = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     color = models.CharField(max_length=50, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    description = MarkdownxField(blank=True, null=True)
 
     class Meta:
         abstract = True 
@@ -41,7 +44,7 @@ class BaseEnquiryFields(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     subject = models.CharField(max_length=200, blank=True, null=True)
-    message = models.TextField(blank=True, null=True)
+    message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -119,7 +122,7 @@ class MasterclassEnquiry(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    message = models.TextField(blank=True, null=True)
+    message = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -129,3 +132,70 @@ class MasterclassEnquiry(models.Model):
 
     def __str__(self):
         return f"Masterclass Enquiry - {self.full_name}"
+
+class Testimonial(models.Model):
+    DISPLAY_CHOICES = [
+        ('text', 'Text Only'),
+        ('video', 'Video Only'),
+        ('both', 'Text + Video'),
+    ]
+
+    # Basic Info
+    title = models.CharField(max_length=255, blank=True, null=True, help_text="Short headline for testimonial (e.g. 'Amazing Experience!')")
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
+
+    # Author Info
+    author_name = models.CharField(max_length=150, blank=True, null=True, help_text="Name of the customer")
+    author_role = models.CharField(max_length=150, blank=True, null=True, help_text="Role or designation (e.g. 'First-time Buyer')")
+
+    # Testimonial Content
+    testimonial_text = models.TextField(blank=True, null=True, help_text="Customer's testimonial message.")
+    youtube_url = models.URLField(blank=True, null=True, help_text="Paste YouTube link if available.")
+    youtube_id = models.CharField(max_length=50, blank=True, null=True, editable=False)
+
+    # Display Settings
+    layout_type = models.CharField(max_length=10, choices=DISPLAY_CHOICES, default='text')
+    rating = models.PositiveSmallIntegerField(default=5, help_text="Rating from 1–5 stars")
+    featured = models.BooleanField(default=False, help_text="Show as featured testimonial")
+    show_on_homepage = models.BooleanField(default=True, help_text="Display on homepage testimonials section")
+    display_order = models.PositiveIntegerField(default=0, help_text="Lower number appears earlier")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["display_order", "-created_at"]
+        verbose_name = "Testimonial"
+        verbose_name_plural = "Testimonials"
+
+    def __str__(self):
+        return f"{self.title} — {self.author_name or 'Anonymous'}"
+
+    # Extract YouTube ID automatically
+    def extract_youtube_id(self):
+        if not self.youtube_url:
+            return None
+        parsed = urlparse(self.youtube_url)
+        if 'youtube' in parsed.netloc:
+            return parse_qs(parsed.query).get('v', [None])[0]
+        elif 'youtu.be' in parsed.netloc:
+            return parsed.path.strip('/')
+        return None
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title) or "testimonial"
+            slug_candidate = base_slug
+            counter = 1
+            while Testimonial.objects.filter(slug=slug_candidate).exists():
+                slug_candidate = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug_candidate
+
+        if self.youtube_url:
+            self.youtube_id = self.extract_youtube_id()
+
+        super().save(*args, **kwargs)
+
+    def youtube_embed_url(self):
+        return f"https://www.youtube.com/embed/{self.youtube_id}" if self.youtube_id else None

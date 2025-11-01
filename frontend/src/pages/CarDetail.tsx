@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import {
   Phone,
   MessageCircle,
@@ -131,11 +133,11 @@ const CarDetail = () => {
         <div className="bg-gray-100 dark:bg-gray-800 py-4 transition-colors">
           <div className="container mx-auto px-4">
             <Link
-              to="/car-listing"
+              to="/car-options"
               className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to Inventory
+              Back to Car Options
             </Link>
           </div>
         </div>
@@ -342,13 +344,20 @@ const CarDetail = () => {
           {/* Description */}
           <Card className="mt-12 bg-white dark:bg-gray-800 transition-colors">
             <CardHeader>
-              <CardTitle className="dark:text-white">Vehicle Description</CardTitle>
+              <CardTitle className="dark:text-white">Car Description</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {carData.description ||
-                  "No detailed description is available for this vehicle."}
-              </p>
+              {carData.description ? (
+                <div className="prose dark:prose-invert max-w-none leading-relaxed">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {carData.description}
+                  </ReactMarkdown>
+                </div>
+              ) : (
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  No detailed description is available for this vehicle.
+                </p>
+              )}
             </CardContent>
           </Card>
         </div>

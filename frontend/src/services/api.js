@@ -1,7 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
 
-
-
 export const fetchCars = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/cars/`);
@@ -10,12 +8,11 @@ export const fetchCars = async () => {
     const data = await response.json();
     console.log("✅ Cars API Response:", data);
 
-    // Normalize image URLs for each car
     const normalizedData = (Array.isArray(data) ? data : data.results || []).map(car => ({
       ...car,
       images: (car.images || []).map(img =>
-        img.image.startsWith("http") ? img.image : `${API_BASE_URL.replace('/api', '')}${img.image}`
-      )
+        img.image.startsWith("http") ? img.image : `${API_BASE_URL.replace("/api", "")}${img.image}`
+      ),
     }));
 
     return normalizedData;
@@ -24,6 +21,7 @@ export const fetchCars = async () => {
     return [];
   }
 };
+
 
 export async function submitEnquiry(formData) {
   try {
@@ -88,3 +86,24 @@ export const sendMasterclassEnquiry = async (formData) => {
     throw error;
   }
 };
+
+
+export async function fetchTestimonials(filters = {}) {
+  try {
+    const params = new URLSearchParams(filters).toString();
+    const url = `${API_BASE_URL}/testimonials/${params ? `?${params}` : ""}`;
+
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Error fetching testimonials: ${res.statusText}`);
+
+    const data = await res.json();
+
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data.results)) return data.results;
+
+    return [];
+  } catch (error) {
+    console.error("❌ fetchTestimonials Error:", error);
+    return [];
+  }
+}

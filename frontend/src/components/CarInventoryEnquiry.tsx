@@ -132,7 +132,7 @@ const CarInventoryEnquiry: React.FC<CarInventoryEnquiryProps> = ({ car, onClose 
           {/* Message */}
           <textarea
             name="message"
-            placeholder="Your Message (optional)"
+            placeholder="Explain to us your personal preferences."
             value={form.message}
             onChange={handleChange}
             rows={3}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -11,13 +12,15 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Car Listing", path: "/car-listing" },
+    { name: "Car Options", path: "/car-options" },
     { name: "Services", path: "/services" },
+    { name: "Testimonials", path: "/#testimonials" }, // ✅ Use HashLink
     { name: "About Us", path: "/about" },
     { name: "Contact Us", path: "/contact" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) =>
+    location.pathname === path || location.hash === path;
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
@@ -29,9 +32,11 @@ const Navbar = () => {
               <img src="/favicon.ico" alt="Kenya Imports Logo" className="h-6 w-6" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-foreground">Xplore Car Imports</span>
+              <span className="font-bold text-xl text-foreground">
+                Xplore Car Imports
+              </span>
               <span className="text-xs text-muted-foreground">
-                Import Cars From Japan With Ease
+                Import Cars from Japan with Ease
               </span>
             </div>
           </Link>
@@ -63,15 +68,13 @@ const Navbar = () => {
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
                     }`}
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
                   >
                     <Link
-                      to="/services/vehicle-sourcing"
+                      to="/services/car-importation"
                       className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                       onClick={() => setIsServicesOpen(false)}
                     >
-                      Vehicle Sourcing
+                      Car Importation
                     </Link>
                     <Link
                       to="/services/taxi-masterclass"
@@ -82,6 +85,20 @@ const Navbar = () => {
                     </Link>
                   </div>
                 </div>
+              ) : link.name === "Testimonials" ? (
+                // ✅ HashLink for smooth scroll
+                <HashLink
+                  key={link.path}
+                  smooth
+                  to={link.path}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive(link.path)
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {link.name}
+                </HashLink>
               ) : (
                 <Link
                   key={link.path}
@@ -130,14 +147,14 @@ const Navbar = () => {
                   {isServicesOpen && (
                     <div className="pl-4 mt-1 space-y-1">
                       <Link
-                        to="/services/vehicle-sourcing"
+                        to="/services/car-importation"
                         onClick={() => {
                           setIsOpen(false);
                           setIsServicesOpen(false);
                         }}
                         className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                       >
-                        Vehicle Sourcing
+                        Car Importation
                       </Link>
                       <Link
                         to="/services/taxi-masterclass"
@@ -152,6 +169,21 @@ const Navbar = () => {
                     </div>
                   )}
                 </div>
+              ) : link.name === "Testimonials" ? (
+                // ✅ HashLink also works on mobile
+                <HashLink
+                  key={link.path}
+                  smooth
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive(link.path)
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {link.name}
+                </HashLink>
               ) : (
                 <Link
                   key={link.path}
@@ -172,7 +204,10 @@ const Navbar = () => {
             <div className="flex flex-col gap-3 mt-4 px-4">
               <ThemeToggle />
               <Button variant="green" size="lg" asChild className="w-full">
-                <Link to="/contact" className="w-full inline-flex items-center justify-center gap-2">
+                <Link
+                  to="/contact"
+                  className="w-full inline-flex items-center justify-center gap-2"
+                >
                   Get Started Today
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

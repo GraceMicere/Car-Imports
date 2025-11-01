@@ -24,28 +24,28 @@ const Hero = () => {
               <span className="text-primary font-bold">Trusted Vehicle Importation Services</span>
             </div>
 
-            <div className="bg-black/80 p-8 rounded-2xl incline-block space-y-4">
-              <h1 className="text-white text-5xl md:text-6xl font-bold leading-tight">
+            <div className="bg-white/80 p-8 rounded-2xl incline-block space-y-4">
+              <h1 className="text-black text-5xl md:text-6xl font-bold leading-tight">
                 Trusted
                 <span className="block bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent py-3">
                   Global Shipping
                 </span>
                 Partners
               </h1>
-              <p className="text-green-500 max-w-xl p-6 rounded-xl backdrop-blur-sm text-lg text-muted-foreground">
-                At <span className="text-primary font-semibold">Xplore Imports</span>, we make car importation 
+              <p className="text-black/80 font-semibold max-w-xl p-6 rounded-xl  text-lg">
+                At <span className="text-black/80 font-semibold">Xplore Imports</span>, we make car importation 
                 simple, transparent, and stress-free. Whether you’re buying your 
-                <span className="text-primary font-semibold"> first car </span> 
+                <span className="text-black/80 font-semibold"> first car </span> 
                 or expanding your 
-                <span className="text-primary font-semibold"> taxi business</span>, we help you source 
-                <span className="text-primary font-semibold"> quality, affordable vehicles </span> 
-                from <span className="text-primary font-semibold">Japan</span> and handle everything 
-                from <span className="text-primary font-semibold">shipping</span> to 
-                <span className="text-primary font-semibold"> doorstep delivery</span>. 
+                <span className="text-black/80 font-semibold"> taxi business</span>, we help you source 
+                <span className="text-black/80 font-semibold"> quality, affordable vehicles </span> 
+                from <span className="text-black/80 font-semibold">Japan</span> and handle everything 
+                from <span className="text-black/80 font-semibold">shipping</span> to 
+                <span className="text-black/80 font-semibold"> doorstep delivery</span>. 
                 We also teach our clients the ins and outs of importation through our 
-                <span className="text-primary font-semibold"> Car Importation Masterclass</span>. 
+                <span className="text-black/80y font-semibold"> Car Importation Masterclass</span>. 
                 With us, you’re not just importing a car — you’re gaining a 
-                <span className="text-primary font-semibold"> trusted partner</span>.
+                <span className="text-black/80 font-semibold"> trusted partner</span>.
               </p>
             </div>
 
@@ -57,7 +57,7 @@ const Hero = () => {
                 </Link>
               </Button>
               <Button variant="green" size="lg" asChild>
-                <Link to="/car-listing">Checkout Out Car Listing</Link>
+                <Link to="/car-options">Checkout Out Car Options</Link>
               </Button>
             </div>
 

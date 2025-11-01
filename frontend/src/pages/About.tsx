@@ -77,48 +77,40 @@ const About = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Helping Kenyans Drive Their Dream Cars and Own a Stabilized Taxi Business
               </h2>
-
               <div className="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
                 <p>
-                  <span className="font-semibold text-green-700 dark:text-green-400">Xplore Imports</span> was born out
-                  of a simple idea — helping everyday Kenyans find the right cars for their{" "}
-                  <span className="font-semibold">taxi and personal businesses.</span> Over the
-                  years, we noticed one common challenge: many people wanted to import cars but
-                  didn’t know{" "}
-                  <span className="font-semibold text-green-700 dark:text-green-400">where to start</span> or{" "}
-                  <span className="font-semibold text-green-700 dark:text-green-400">who to trust.</span>
+                  Xplore Imports was born out
+                  of a simple idea — helping everyday Kenyans find the right cars for their taxi and personal
+                  businesses. Over the years, we noticed one common challenge: many people wanted to import cars but
+                  didn’t know where to start or who to trust.
                 </p>
 
                 <p>
-                  Our mission is to make the car importation journey{" "}
-                  <span className="font-semibold text-green-700 dark:text-green-400">easy, transparent, and stress-free.</span>{" "}
-                  We connect clients to{" "}
-                  <span className="font-semibold">quality and affordable vehicles</span> from{" "}
-                  <span className="font-semibold text-green-700 dark:text-green-400">Japan</span>,
-                  handling everything from sourcing, inspection, shipping, and customs clearance to{" "}
-                  <span className="font-semibold">final delivery straight to your door.</span>
+                  Our mission is to make the car importation journey easy, transparent, and stress-free. We connect
+                  clients to quality and affordable cars from Japan, handling everything from sourcing, inspection,
+                  shipping, and customs clearance to final delivery straight to your door.
                 </p>
 
                 <p>
-                  We believe in{" "}
-                  <span className="font-semibold text-green-700 dark:text-green-400">open communication and honesty</span>{" "}
-                  every step of the way. Clients receive{" "}
-                  <span className="font-semibold">clear updates, transparent costs,</span> and total{" "}
-                  <span className="font-semibold text-green-700 dark:text-green-400">peace of mind</span> knowing their
-                  cars are handled with care.
+                  Since 2021, we’ve been
+                  offering expert Taxi Business Advising, helping hundreds of
+                  drivers and entrepreneurs make smarter car investment decisions. Building on that success, in{" "}
+                  2025 we expanded into{" "}
+                  Car Import Services — bringing the same trusted, transparent
+                  approach to vehicle sourcing and delivery from Japan.
                 </p>
 
-                <div className="pt-4">
-                  <p className="font-semibold text-green-700 dark:text-green-400">Taxi Business Advising since 2021</p>
-                  <p className="font-semibold text-green-700 dark:text-green-400">Car Import Services since 2025</p>
-                </div>
+                <p>
+                  We believe in open communication and honesty every step of the way. Clients receive clear updates,
+                  transparent costs, and total peace of mind knowing their cars are handled with care.
+                </p>
               </div>
             </div>
 
             {/* Right: Image */}
             <div className="relative group rounded-2xl overflow-hidden shadow-md">
               <iframe
-                src="https://www.youtube.com/embed/uqlcOHi4bAY"
+                src="https://www.youtube.com/embed/feO-u_WJjog"
                 title="About Xplore Imports"
                 className="w-full h-[400px] rounded-2xl"
                 allowFullScreen
@@ -126,7 +118,7 @@ const About = () => {
 
               {/* Watch on YouTube Overlay */}
               <a
-               href="https://youtu.be/uqlcOHi4bAY"
+               href="https://youtu.be/feO-u_WJjog?si=WusDX_6oR6UZO6Ep"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -205,7 +197,6 @@ const About = () => {
                 { title: "Personal Guidance", desc: "Our team walks with you through every step of the process." },
                 { title: "Affordable Pricing", desc: "We ensure competitive rates without compromising on quality." },
                 { title: "Fast & Secure Delivery", desc: "Your car arrives safely, with real-time shipment updates." },
-                { title: "After-Sale Support", desc: "We remain available even after delivery — your satisfaction matters most." },
               ].map(({ title, desc }, i) => (
                 <Card
                   key={i}

@@ -39,7 +39,7 @@ const VehicleSourcing = () => {
               Find the Right Car, the Right Way
             </h1>
             <p className="text-lg opacity-90 mb-8">
-            We simplify the process of importing your dream car. Our team of mechanics and sourcing experts handle everything — from vehicle inspection to customs compliance — ensuring every import meets Kenya’s strict standards for safety, age, and specification.
+            We simplify the process of importing your dream car. Our team of sourcing experts handle everything — from car inspection to customs compliance — ensuring every import meets Kenya’s strict standards for safety, age, and specification.
             </p>
             <a
               href="#form"
@@ -70,37 +70,37 @@ const VehicleSourcing = () => {
                 {
                   step: "1",
                   title: "Tell Us Your Needs",
-                  desc: "Share your vehicle preferences, budget, and any specific requirements you have. Our team will use this information to find the perfect match for you.",
+                  desc: "Share your car preferences, budget, and any specific requirements you have. Our team will use this information to find the perfect match for you.",
                 },
                 {
                   step: "2",
                   title: "We Search From Our Japan Network",
-                  desc: "We conduct an extensive search through our trusted network of Japanese dealers and auction houses to identify the best vehicles available.",
+                  desc: "We conduct an extensive search through our trusted network of Japanese dealers and auction houses to identify the best cars available.",
                 },
                 {
                   step: "3",
                   title: "Present Verified Options",
-                  desc: "You’ll receive a curated list of verified vehicle options that match your preferences, complete with photos and detailed specifications.",
+                  desc: "You’ll receive a curated list of verified car options that match your preferences, complete with photos and detailed specifications.",
                 },
                 {
                   step: "4",
                   title: "Reservation",
-                  desc: "Once you’ve selected your preferred vehicle, we reserve it for up to 2 days while you prepare for purchase.",
+                  desc: "Once you’ve selected your preferred car, we reserve it for up to 2 days while you prepare for purchase.",
                 },
                 {
                   step: "5",
                   title: "Due Diligence",
-                  desc: "Before finalizing the purchase, our experts conduct a comprehensive background check — including service history, recall records, and accident reports — to ensure the vehicle’s integrity.",
+                  desc: "Before finalizing the purchase, our experts conduct a comprehensive background check — including service history, recall records, and accident reports — to ensure the car’s integrity.",
                 },
                 {
                   step: "6",
                   title: "Secure Payment",
-                  desc: "We facilitate a transparent and secure international payment process, ensuring your funds are safely transferred to the vehicle’s seller.",
+                  desc: "We facilitate a transparent and secure international payment process, ensuring your funds are safely transferred to the car’s seller.",
                 },
                 {
                   step: "7",
                   title: "Relax While We Ship",
-                  desc: "Once payment is confirmed, sit back and relax as your vehicle is shipped to Kenya — typically arriving within 45 days.",
+                  desc: "Once payment is confirmed, sit back and relax as your car is shipped to Kenya — typically arriving within 45 days.",
                 },
                 {
                   step: "8",
@@ -141,14 +141,14 @@ const VehicleSourcing = () => {
               variants={fadeUp}
               className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100"
             >
-              Why Choose Our Vehicle Sourcing?
+              Why Choose Our Car Importation?
             </motion.h2>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
                   icon: Star,
-                  title: "High-Grade Quality Vehicles",
+                  title: "High-Grade Quality cars",
                   desc: "We specialize in importing low-mileage, high-grade cars (Grade 4 and above) to ensure premium quality and reliability.",
                 },
                 {
@@ -164,17 +164,17 @@ const VehicleSourcing = () => {
                 {
                   icon: DollarSign,
                   title: "Competitive Pricing",
-                  desc: "We offer the best market rates by balancing your budget with exceptional vehicle quality and value.",
+                  desc: "We offer the best market rates by balancing your budget with exceptional car quality and value.",
                 },
                 {
                   icon: ShieldCheck,
                   title: "Kenya-Compliant Vehicles",
-                  desc: "All sourced vehicles meet Kenyan import standards, including right-hand drive and the 8-year age limit requirement.",
+                  desc: "All sourced cars meet Kenyan import standards, including right-hand drive and the 8-year age limit requirement.",
                 },
                 {
                   icon: Zap,
                   title: "Fast and Reliable Sourcing",
-                  desc: "We prioritize vehicles already inspected and approved for export to ensure a quick, seamless sourcing process.",
+                  desc: "We prioritize cars already inspected and approved for export to ensure a quick, seamless sourcing process.",
                 },
               ].map((item, i) => (
                 <motion.div
@@ -286,7 +286,7 @@ const VehicleSourcing = () => {
               variants={fadeUp}
               className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100"
             >
-              Popular Vehicles We Source for Kenya
+              Popular Cars We Source for Kenya
             </motion.h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -344,10 +344,10 @@ const VehicleSourcing = () => {
       <section className="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300" id="form">
         <div className="container mx-auto px-4 max-w-3xl text-center mb-10">
           <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-            Enquire About Vehicle Sourcing
+            Enquire About Car Importation
           </h2>
           <p className="text-muted-foreground dark:text-gray-300">
-            Have specific vehicle requirements in mind? Fill out the form below and
+            Have specific car requirements in mind? Fill out the form below and
             our team will get back to you with the best sourcing options tailored to your needs.
           </p>
         </div>

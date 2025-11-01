@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound";
 import VehicleSourcing from "./pages/VehicleSourcing";
 import CarImportationMasterclass from "./pages/CarImportationMasterclass";  
 
+import ScrollToTop from "./components/ScrollToTop";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -22,11 +24,12 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/car-listing" element={<Inventory />} />
-            <Route path="/car-listing/:id" element={<CarDetail />} />
-            <Route path="/services/vehicle-sourcing" element={<VehicleSourcing />} />
+            <Route path="/car-options" element={<Inventory />} />
+            <Route path="/car-options/:id" element={<CarDetail />} />
+            <Route path="/services/car-importation" element={<VehicleSourcing />} />
             <Route path="/services/taxi-masterclass" element={<CarImportationMasterclass />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

@@ -43,6 +43,7 @@ const Index = () => {
         </motion.div>
 
         <motion.div
+          id="testimonials"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"

@@ -7,7 +7,6 @@ import { PlayCircle } from "lucide-react";
 const CarImportationMasterclass: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
-  // ✅ Reusable YouTube Embed component with hover overlay
   const YouTubeEmbed = ({ videoId, title }: { videoId: string; title: string }) => (
     <div className="relative group rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
       <iframe
@@ -41,7 +40,7 @@ const CarImportationMasterclass: React.FC = () => {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 px-6">
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight">
-              Car Importation & Taxi Business Masterclass
+              Taxi Business Masterclass
             </h1>
             <p className="mt-5 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               Thinking of joining Kenya's online taxi economy? This masterclass walks you through
@@ -62,7 +61,7 @@ const CarImportationMasterclass: React.FC = () => {
 
           <div className="flex-1">
             <YouTubeEmbed
-              videoId="uqlcOHi4bAY"
+              videoId="EwYtPwQfyI8"
               title="About Xplore Imports"
             />
           </div>
@@ -73,12 +72,6 @@ const CarImportationMasterclass: React.FC = () => {
       <section className="max-w-6xl mx-auto px-6 py-20 space-y-20">
         {/* PILLAR 1 */}
         <div className="flex flex-col md:flex-row items-center gap-10">
-          <div className="md:w-1/2">
-            <YouTubeEmbed
-              videoId="_gQ4Wrq7OMU"
-              title="Taxi Business Masterclass"
-            />
-          </div>
           <div className="md:w-1/2">
             <h2 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">
               1. Taxi Business Masterclass

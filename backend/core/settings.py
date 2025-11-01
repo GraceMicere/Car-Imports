@@ -12,8 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'cloudinary',
     'cloudinary_storage',
+    'markdownx',
     'api',
 ]
 
@@ -117,12 +118,19 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+CORS_ALLOW_CREDENTIALS = False
+
 CSRF_TRUSTED_ORIGINS = [
     "https://admin.xplorecars.cc",
     "https://xplorecars.cc",
     "https://www.xplorecars.cc",
     "https://car-imports-production.up.railway.app",
 ]
+
+
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),

@@ -63,10 +63,10 @@ const FeaturedCars = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Featured Vehicles
+            Featured Car Options
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Explore our handpicked selection of premium imported vehicles, ready for delivery to Kenya.
+            Explore our handpicked selection of premium imported cars, ready for delivery to Kenya.
           </p>
         </div>
 
@@ -167,8 +167,8 @@ const FeaturedCars = () => {
             asChild
             className="dark:bg-blue-600 dark:hover:bg-blue-500 dark:text-white transition-colors"
           >
-            <Link to="/car-listing">
-              Checkout Our Car Listing
+            <Link to="/car-options">
+              Checkout Our Car Options
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

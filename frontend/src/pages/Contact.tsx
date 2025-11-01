@@ -44,7 +44,7 @@ const Contact = () => {
                 <Card className="p-6 border-2 hover:border-primary transition-colors">
                   <MapPin className="h-8 w-8 text-primary mb-4" />
                   <h3 className="font-bold text-lg mb-2">Our Location</h3>
-                  <p className="text-muted-foreground">New Lane, along Kenyatta Road - Nairobi</p>
+                  <p className="text-muted-foreground">New rain, along Kenyatta Road - Nairobi</p>
                 </Card>
 
                 <Card className="p-6 border-2 hover:border-primary transition-colors">

@@ -84,7 +84,7 @@ const MasterclassEnquiryForm = () => {
         />
         <textarea
           name="message"
-          placeholder="Optional Message"
+          placeholder="Message body"
           value={formData.message}
           onChange={handleChange}
           className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"

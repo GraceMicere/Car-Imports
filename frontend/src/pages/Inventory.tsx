@@ -62,7 +62,7 @@ function Inventory() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          Explore Our Car Collection
+          Check out our availabe cars
         </motion.h2>
 
         {/* Cars Grid */}
@@ -119,7 +119,7 @@ function Inventory() {
                   {/* Buttons */}
                   <div className="flex justify-between mt-4">
                     <Link
-                      to={`/car-listing/${car.id}`}
+                      to={`/car-options/${car.id}`}
                       className="bg-primary text-white px-4 py-2 rounded-lg text-sm hover:bg-primary/80 transition"
                     >
                       View Details
@@ -140,12 +140,10 @@ function Inventory() {
         {/* Authenticity Section */}
         <section className="mt-20 text-center">
           <h3 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">
-            100% Verified Car Listings
+            100% Verified Cars
           </h3>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Every vehicle listed on our platform is verified for authenticity,
-            mileage accuracy, and ownership history. We ensure you buy with
-            confidence.
+            We perform thorough due diligence on each car’s history, usage, service records, accident history, and recall status before import.
           </p>
         </section>
       </main>
