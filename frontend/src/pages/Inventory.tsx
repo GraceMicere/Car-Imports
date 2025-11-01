@@ -8,6 +8,9 @@ import Footer from "../components/Footer";
 import CarInventoryEnquiry from "../components/CarInventoryEnquiry"; 
 import CarEnquiryForm from "../components/CarEnquiryForm";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
+
+
 interface Car {
   id: number;
   name: string;
@@ -70,7 +73,9 @@ function Inventory() {
           {cars.map((car, index) => {
             const mainImage =
               car.images && car.images.length > 0
-                ? car.images[0]
+                ? (car.images[0].startsWith("http")
+                    ? car.images[0]
+                    : `${API_BASE_URL.replace("/api", "")}${car.images[0]}`)
                 : "/placeholder-car.jpg";
 
             return (
