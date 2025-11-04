@@ -148,7 +148,7 @@ const FeaturedCars = () => {
                     className="w-full dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition-colors"
                     asChild
                   >
-                    <Link to={`/car-listing/${car.id}`}>
+                    <Link to={`/car-options/${car.id}`}>
                       View Details
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
