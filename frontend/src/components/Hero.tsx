@@ -44,7 +44,7 @@ const Hero = () => {
                 <span className="text-black/80 font-semibold"> doorstep delivery</span>. 
                 We also teach our clients the ins and outs of importation through our 
                 <span className="text-black/80y font-semibold"> Car Importation Masterclass</span>. 
-                With us, you’re not just importing a car — you’re gaining a 
+                With us, you’re not just importing a car you’re gaining a 
                 <span className="text-black/80 font-semibold"> trusted partner</span>.
               </p>
             </div>

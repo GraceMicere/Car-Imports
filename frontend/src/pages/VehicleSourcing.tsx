@@ -39,7 +39,7 @@ const VehicleSourcing = () => {
               Find the Right Car, the Right Way
             </h1>
             <p className="text-lg opacity-90 mb-8">
-            We simplify the process of importing your dream car. Our team of sourcing experts handle everything — from car inspection to customs compliance — ensuring every import meets Kenya’s strict standards for safety, age, and specification.
+            We simplify the process of importing your dream car. Our team of sourcing experts handle everything from car inspection to customs compliance ensuring every import meets Kenya’s strict standards for safety, age, and specification.
             </p>
             <a
               href="#form"
@@ -90,7 +90,7 @@ const VehicleSourcing = () => {
                 {
                   step: "5",
                   title: "Due Diligence",
-                  desc: "Before finalizing the purchase, our experts conduct a comprehensive background check — including service history, recall records, and accident reports — to ensure the car’s integrity.",
+                  desc: "Before finalizing the purchase, our experts conduct a comprehensive background check including service history, recall records, and accident reports to ensure the car’s integrity.",
                 },
                 {
                   step: "6",
@@ -100,7 +100,7 @@ const VehicleSourcing = () => {
                 {
                   step: "7",
                   title: "Relax While We Ship",
-                  desc: "Once payment is confirmed, sit back and relax as your car is shipped to Kenya — typically arriving within 45 days.",
+                  desc: "Once payment is confirmed, sit back and relax as your car is shipped to Kenya typically arriving within 45 days.",
                 },
                 {
                   step: "8",
@@ -110,7 +110,7 @@ const VehicleSourcing = () => {
                 {
                   step: "9",
                   title: "Final Delivery",
-                  desc: "Your car is delivered to Nairobi, inspected, and then transported directly to your doorstep — ready for the road.",
+                  desc: "Your car is delivered to Nairobi, inspected, and then transported directly to your doorstep ready for the road.",
                 },
               ].map((item, i) => (
                 <motion.div
@@ -159,7 +159,7 @@ const VehicleSourcing = () => {
                 {
                   icon: CreditCard,
                   title: "Flexible Payment Options",
-                  desc: "Enjoy flexibility — pay 70% upfront and settle the balance once your car arrives safely at the Port of Mombasa.",
+                  desc: "Enjoy flexibility by paying 70% upfront and settle the balance once your car arrives safely at the Port of Mombasa.",
                 },
                 {
                   icon: DollarSign,
@@ -209,7 +209,7 @@ const VehicleSourcing = () => {
             </motion.h2>
 
             <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-              We don’t just import cars for personal use — we empower entrepreneurs and
+              We don’t just import cars for personal use we empower entrepreneurs and
               drivers to start or expand their ride-handling businesses. Every vehicle we
               recommend for online taxi services, corporate transport, or personal hire
               has been carefully evaluated for efficiency, durability, and profitability.
@@ -300,7 +300,7 @@ const VehicleSourcing = () => {
                 {
                   icon: Fuel,
                   title: "Fuel-Efficient Hatchbacks",
-                  desc: "Perfect for both private and taxi use — low maintenance, great fuel economy, and easy spare parts availability.",
+                  desc: "Perfect for both private and taxi use low maintenance, great fuel economy, and easy spare parts availability.",
                   models: ["Toyota Vitz", "Mazda Demio SkyActiv", "Honda Fit Hybrid", "Suzuki Swift", "Toyota Passo"],
                 },
                 {
@@ -312,7 +312,7 @@ const VehicleSourcing = () => {
                 {
                   icon: Car,
                   title: "SUVs for Business or Private Use",
-                  desc: "For long-distance comfort, high ground clearance, and multi-purpose usage — perfect for both urban and rural areas.",
+                  desc: "For long-distance comfort, high ground clearance, and multi-purpose usage perfect for both urban and rural areas.",
                   models: ["Toyota Harrier", "RAV4", "Honda CR-V", "Mazda CX-5", "Subaru Forester"],
                 },
               ].map((item, i) => (

@@ -44,7 +44,7 @@ const CarImportationMasterclass: React.FC = () => {
             </h1>
             <p className="mt-5 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               Thinking of joining Kenya's online taxi economy? This masterclass walks you through
-              everything — from choosing the right vehicle and understanding platforms like Uber and
+              everything from choosing the right vehicle and understanding platforms like Uber and
               Bolt, to cost breakdowns, documentation, and profit insights. Perfect for new drivers,
               fleet owners, or anyone starting out in Kenya’s taxi industry.
             </p>
@@ -78,7 +78,7 @@ const CarImportationMasterclass: React.FC = () => {
             </h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               A hands-on, revenue-focused module that gives you everything you need to run a
-              profitable taxi business — whether you want to drive part-time or build a full-time fleet.
+              profitable taxi business whether you want to drive part-time or build a full-time fleet.
             </p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               <li><strong>Training:</strong> Platform setup, customer handling, and safety basics.</li>

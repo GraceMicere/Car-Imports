@@ -80,7 +80,7 @@ const About = () => {
               <div className="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
                 <p>
                   Xplore Imports was born out
-                  of a simple idea — helping everyday Kenyans find the right cars for their taxi and personal
+                  of a simple idea helping everyday Kenyans find the right cars for their taxi and personal
                   businesses. Over the years, we noticed one common challenge: many people wanted to import cars but
                   didn’t know where to start or who to trust.
                 </p>
@@ -96,7 +96,7 @@ const About = () => {
                   offering expert Taxi Business Advising, helping hundreds of
                   drivers and entrepreneurs make smarter car investment decisions. Building on that success, in{" "}
                   2025 we expanded into{" "}
-                  Car Import Services — bringing the same trusted, transparent
+                  Car Import Services bringing the same trusted, transparent
                   approach to vehicle sourcing and delivery from Japan.
                 </p>
 
@@ -152,9 +152,9 @@ const About = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 { icon: CheckCircle, title: "Integrity & Transparency", description: "Honest communication and clear pricing with no hidden fees." },
-                { icon: Heart, title: "Customer Care", description: "Every client is treated as a partner — your satisfaction is our success." },
+                { icon: Heart, title: "Customer Care", description: "Every client is treated as a partner your satisfaction is our success." },
                 { icon: Globe, title: "Global Reach", description: "Strong partnerships in Japan ensure premium selections." },
-                { icon: Target, title: "Reliability", description: "We deliver what we promise — on time and with care." },
+                { icon: Target, title: "Reliability", description: "We deliver what we promise on time and with care." },
                 { icon: Users, title: "Community Focus", description: "We grow by empowering Kenyans to make informed car investment decisions." },
                 { icon: Award, title: "Excellence", description: "Striving for quality service in every import, every client, every time." },
               ].map(({ icon: Icon, title, description }, index) => (
@@ -192,7 +192,7 @@ const About = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "End-to-End Service", desc: "From vehicle sourcing to doorstep delivery — we handle it all for you." },
+                { title: "End-to-End Service", desc: "From vehicle sourcing to doorstep delivery we handle it all for you." },
                 { title: "Trusted Markets", desc: "We only source cars from reputable and verified dealers worldwide." },
                 { title: "Personal Guidance", desc: "Our team walks with you through every step of the process." },
                 { title: "Affordable Pricing", desc: "We ensure competitive rates without compromising on quality." },
