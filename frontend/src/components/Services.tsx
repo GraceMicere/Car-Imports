@@ -8,7 +8,7 @@ const services = [
     icon: Search,
     title: "Car Importation",
     description:
-      "We source high-quality vehicles from trusted dealers and auctions across Japan ensuring every import meets strict quality and value standards tailored to your budget.",
+      "We source high-quality vehicles from trusted dealers and auctions from Japan ensuring every import meets strict quality and value standards tailored to your budget.",
     path: "/services/car-importation",
   },
   {
