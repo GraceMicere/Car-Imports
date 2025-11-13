@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Car Options", path: "/car-options" },
     { name: "Services", path: "/services" },
-    { name: "Testimonials", path: "/#testimonials" }, // ✅ Use HashLink
+    { name: "Testimonials", path: "/#testimonials" }, 
     { name: "About Us", path: "/about" },
     { name: "Contact Us", path: "/contact" },
   ];
@@ -23,13 +23,13 @@ const Navbar = () => {
     location.pathname === path || location.hash === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
+    <nav className="sticky top-0 z-50 h-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="bg-hero-gradient rounded-lg transition-transform group-hover:scale-110">
-              <img src="/favicon.ico" alt="Kenya Imports Logo" className="h-6 w-6" />
+              <img src="/favicon.ico" alt="Kenya Imports Logo" className="h-9 w-20 md:h-20 transition-transform group-hover:scale-110" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-xl text-foreground">
