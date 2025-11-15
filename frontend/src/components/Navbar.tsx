@@ -23,7 +23,7 @@ const Navbar = () => {
     location.pathname === path || location.hash === path;
 
   return (
-    <nav className="sticky top-0 z-50 h-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
+    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 md:bg-background/95 md:backdrop-blur md:supports-[backdrop-filter]:bg-background/80 border-b border-border shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
