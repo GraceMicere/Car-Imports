@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import { fadeUp } from "../animations/fadeUp";
 import { motion } from "framer-motion";
-import FeaturedCars from "@/components/FeaturedCars";
+import FeaturedCars from "@/components/FeaturedCars1";
 import FAQ from "@/components/Faq";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
